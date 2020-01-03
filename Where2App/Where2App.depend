@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1578057751 source:c:\users\user\desktop\smartgit projects\where2\where2app\gui.c
+	"gui.h"
+
+1578053788 c:\users\user\desktop\smartgit projects\where2\where2app\gui.h
+	<stdio.h>
+	<windows.h>
+
+1578063580 source:c:\users\user\desktop\smartgit projects\where2\where2app\main.c
+	<stdio.h>
+	<stdlib.h>
+	"gui.h"
+
+1578065241 source:c:\users\user\desktop\smartgit projects\where2\where2app\adminmain.c
+	"adminMainFunctions.h"
+
+1578057199 source:c:\users\user\desktop\smartgit projects\where2\where2app\usermain.c
+
+1578057873 source:c:\users\user\desktop\smartgit projects\where2\where2app\exitmain.c
+
+1578063580 c:\users\user\desktop\smartgit projects\where2\where2app\adminmainfunctions.h
+	<stdio.h>
+	<windows.h>
+
+1578058536 source:c:\users\user\desktop\smartgit projects\where2\where2app\usermainfunctions.c
+
+1578065241 source:c:\users\user\desktop\smartgit projects\where2\where2app\adminmainfunctions.c
+	"adminMainFunctions.h"
+
