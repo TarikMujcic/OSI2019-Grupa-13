@@ -19,9 +19,9 @@ int main()
         do
         {
             if(wrongOption)
-                printf("That is not a valid option !\n\n");
+                printf("That is not a valid option! Try again!\n\n");
             printf("Your option is:");
-            scanf("%d",&accountOption);
+            scanf(" %d",&accountOption);
             wrongOption = 1;
         }
         while (accountOption < 1 || accountOption > 3);
@@ -49,9 +49,9 @@ int main()
 }
 
 /*NOTES:
-1. Check how to center text in the console
+1. Check how to center text in the console and how to open in full screen
 2. In the adminMainFunctions.c we need to check in the registration() function whether the username is available or not (its marked with a comment)
-3.We need to modify the logRegForm() function so it has an option #3 - to cencel loging or registrating if the user wants to cancel
-    (its marked with a comment)
-4.
+3. Make corrections inside the FIRST(MAIN) DO...WHILE LOOP so we avoid infinite loop
+4. Make all gui.c "rectangles" equal in width (find the widest and make all of them equaly wide)
+
 */

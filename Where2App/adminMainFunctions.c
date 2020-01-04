@@ -3,19 +3,6 @@ administrator part of the application*/
 
 #include "adminMainFunctions.h"
 
-void printLogRegOptions()
-{
-    printf("==========================================================\n");
-    printf("||                                                      ||\n");
-    printf("||                                                      ||\n");
-    printf("||              CHOOSE AN OPTION:                       ||\n");
-    printf("||  1) LOGIN(already have an account) -> Type in '1'    ||\n");
-    printf("||  2)         REGISTER               -> Type in '2'    ||\n");
-    printf("||                                                      ||\n");
-    printf("||                                                      ||\n");
-    printf("==========================================================\n");
-    printf("\n");
-}
 
 void maskPassword(char *password)
 {
@@ -137,7 +124,7 @@ int logRegForm()
         scanf("%d",&option);
         wrongOption = 1;
     }
-    while(option != 1 && option != 2);
+    while(option != 1 && option != 2 && option != 3);
 
     ///////////---------------------------------------------------- L O G I N  -----------------------------------------------------------------
     if(option == 1)
@@ -148,25 +135,13 @@ int logRegForm()
     else if(option == 2)
     {
         registration();
+        printRegLoading();
         printf("Your registration was successful!\nYou need to log into your account to proceed: \n");
         login();
     }
+    ///////////--------------------------------------------------- C A N C E L  ----------------------------------------------------------------
+    else if(option == 3)
+        return 0;
 }
 
-void printOptionsAdminPart()
-{
-    printf("==========================================================\n");
-    printf("||                                                      ||\n");
-    printf("||                                                      ||\n");
-    printf("||                CHOOSE AN OPTION:                     ||\n");
-    printf("||        1) CREATE AN EVENT    -> Type in '1'          ||\n");
-    printf("||        2) UPDATE AN EVENT    -> Type in '2'          ||\n");
-    printf("||        3) DELETE AN EVENT    -> Type in '3'          ||\n");
-    printf("||        4) ADD NEW CATEGORY   -> Type in '4'          ||\n");
-    printf("||        5) DELETE A CATEGORY  -> Type in '5'          ||\n");
-    printf("||        6) EXIT               -> Type in '6'          ||\n");
-    printf("||                                                      ||\n");
-    printf("||                                                      ||\n");
-    printf("==========================================================\n");
-    printf("\n");
-}
+

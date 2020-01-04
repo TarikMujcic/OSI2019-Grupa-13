@@ -1,6 +1,8 @@
 /*C file for #3 option in FIRST(MAIN) DO...WHILE LOOP
 (for exiting the app)*/
 
+#include "gui.h"
+
 int exitMain()              //int is because it needs to check if the user is sure to exit the app
 {
     int wrongOption = 0,    //variable to use for help to print out Error if user types in wrong option
@@ -21,10 +23,7 @@ int exitMain()              //int is because it needs to check if the user is su
     if(option == 1)
     {
         printf("\n");
-        printf("           GOODBYE AND HAVE A NICE DAY !           \n");
-        printf("||=============");Sleep(1200);
-                        printf("======================");Sleep(1800);
-                                             printf("============||\n");Sleep(1000);
+        printGoodbye();
         return -1;      //TO EXIT THE APP
 
     }
