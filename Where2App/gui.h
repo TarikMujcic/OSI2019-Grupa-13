@@ -1,7 +1,7 @@
 #ifndef GUI_H_INCLUDED
 #define GUI_H_INCLUDED
 /*Header file for some functions for printing out
-something to the consoli in certain format*/
+something to the console in certain format*/
 
 #include <stdio.h>
 #include <windows.h>            //for Sleep function

@@ -55,7 +55,7 @@ void adminMain()
                 option = -1;
             }
         }
-        while(option != -1)
+        while(option != -1);
 
 
     }
