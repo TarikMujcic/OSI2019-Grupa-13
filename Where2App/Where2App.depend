@@ -113,3 +113,49 @@
 
 1578200228 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\eventfunctions.h
 
+1578252765 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\adminmain.c
+	"adminMainFunctions.h"
+
+1578248112 c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\adminmainfunctions.h
+	<stdio.h>
+	<windows.h>
+	"gui.h"
+
+1578248112 c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\gui.h
+	<stdio.h>
+	<windows.h>
+
+1578248112 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\adminmainfunctions.c
+	"adminMainFunctions.h"
+	"userInputValidation.h"
+
+1578248113 c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\userinputvalidation.h
+
+1578248112 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\exitmain.c
+	"gui.h"
+
+1578248112 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\gui.c
+	"gui.h"
+
+1578248112 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\main.c
+	<stdio.h>
+	<stdlib.h>
+	"gui.h"
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+	"eventFunctions.h"
+
+1578258141 c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\eventfunctions.h
+
+1578248113 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\userinputvalidation.c
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+
+1578248113 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\usermain.c
+
+1578248113 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\usermainfunctions.c
+
+1578257754 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\eventfunctions.c
+	"eventFunctions.h"
+	"adminMainFunctions.h"
+

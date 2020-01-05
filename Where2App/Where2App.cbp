@@ -38,6 +38,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="adminMainFunctions.h" />
+		<Unit filename="eventFunctions.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="eventFunctions.h" />
 		<Unit filename="exitMain.c">
 			<Option compilerVar="CC" />
