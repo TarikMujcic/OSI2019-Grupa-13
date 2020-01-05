@@ -38,6 +38,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="adminMainFunctions.h" />
+		<Unit filename="eventFunctions.h" />
 		<Unit filename="exitMain.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -48,6 +49,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="userInputValidation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="userInputValidation.h" />
 		<Unit filename="userMain.c">
 			<Option compilerVar="CC" />
 		</Unit>
