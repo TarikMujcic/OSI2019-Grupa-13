@@ -29,3 +29,45 @@
 1578124379 source:c:\users\user\desktop\smartgit projects\where2\where2app\adminmainfunctions.c
 	"adminMainFunctions.h"
 
+1578186637 source:c:\users\danil\onedrive\documents\osi aplikacija\where2app\adminmain.c
+	"adminMainFunctions.h"
+
+1578153803 c:\users\danil\onedrive\documents\osi aplikacija\where2app\adminmainfunctions.h
+	<stdio.h>
+	<windows.h>
+	"gui.h"
+
+1578185155 c:\users\danil\onedrive\documents\osi aplikacija\where2app\gui.h
+	<stdio.h>
+	<windows.h>
+
+1578197661 source:c:\users\danil\onedrive\documents\osi aplikacija\where2app\adminmainfunctions.c
+	"adminMainFunctions.h"
+	"userInputValidation.h"
+
+1578153803 source:c:\users\danil\onedrive\documents\osi aplikacija\where2app\exitmain.c
+	"gui.h"
+
+1578185550 source:c:\users\danil\onedrive\documents\osi aplikacija\where2app\gui.c
+	"gui.h"
+
+1578199920 source:c:\users\danil\onedrive\documents\osi aplikacija\where2app\main.c
+	<stdio.h>
+	<stdlib.h>
+	"gui.h"
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+	"eventFunctions.h"
+
+1578153803 source:c:\users\danil\onedrive\documents\osi aplikacija\where2app\usermain.c
+
+1578153803 source:c:\users\danil\onedrive\documents\osi aplikacija\where2app\usermainfunctions.c
+
+1578197391 source:c:\users\danil\onedrive\documents\osi aplikacija\where2app\userinputvalidation.c
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+
+1578195478 c:\users\danil\onedrive\documents\osi aplikacija\where2app\userinputvalidation.h
+
+1578200228 c:\users\danil\onedrive\documents\osi aplikacija\where2app\eventfunctions.h
+

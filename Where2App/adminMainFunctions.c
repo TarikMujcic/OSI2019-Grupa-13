@@ -2,6 +2,7 @@
 administrator part of the application*/
 
 #include "adminMainFunctions.h"
+#include "userInputValidation.h"
 
 
 void maskPassword(char *password)
@@ -36,7 +37,11 @@ void registration()
 
     printf("NEW REGISTRATION: \n");
     printf("USERNAME: ");               scanf("%s",newRegAdmin.username);
-    /// WE MUST WRITE CODE FOR CHECKING IF THE USERNAME IS AVAILABLE
+    if(availableUsername(newRegAdmin.username)==0)
+    {
+        printf("This username is already taken! Please choose another one!\n\n");
+        goto REGISTRATIONLABEL;
+    }
     printf("PASSWORD: ");               maskPassword(newRegAdmin.password);
     printf("\n");
 
@@ -142,6 +147,7 @@ int logRegForm()
     ///////////--------------------------------------------------- C A N C E L  ----------------------------------------------------------------
     else if(option == 3)
         return 0;
+    return 0;
 }
 
 

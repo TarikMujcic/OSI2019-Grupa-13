@@ -2,12 +2,15 @@
 #include <stdlib.h>
 
 #include "gui.h"
-
+#include "userInputValidation.h"
+#include "adminMainFunctions.h"
+#include "eventFunctions.h"
 
 //Version 2.1.2020.  (1)
 int main()
 {
     int accountOption;          //variable to store the option that user chooses for which part of app he wants to use
+    char accOptionHelp[64];     //helper variable to store original input
 
     welcomeScreenGui();         //function for welcome screen and loading
     do                          //in the rest of the code i will be referring to this do...while loop as: FIRST(MAIN) DO...WHILE LOOP
@@ -21,7 +24,8 @@ int main()
             if(wrongOption)
                 printf("That is not a valid option! Try again!\n\n");
             printf("Your option is:");
-            scanf(" %d",&accountOption);
+            fgets(accOptionHelp,63,stdin);                        //store original input into the helper variable
+            accountOption=validAccountOption(accOptionHelp);      //check the input
             wrongOption = 1;
         }
         while (accountOption < 1 || accountOption > 3);
@@ -49,9 +53,9 @@ int main()
 }
 
 /*NOTES:
-1. Check how to center text in the console and how to open in full screen
-2. In the adminMainFunctions.c we need to check in the registration() function whether the username is available or not (its marked with a comment)
-3. Make corrections inside the FIRST(MAIN) DO...WHILE LOOP so we avoid infinite loop
-4. Make all gui.c "rectangles" equal in width (find the widest and make all of them equaly wide)
+1. Check how to center text in the console and how to open in full screen - THIS OPTION CAN BE ADDED LATER PROVIDED WE HAVE ENOUGH TIME
+2. In the adminMainFunctions.c we need to check in the registration() function whether the username is available or not (its marked with a comment)  -DONE!
+3. Make corrections inside the FIRST(MAIN) DO...WHILE LOOP so we avoid infinite loop     -DONE!
+4. Make all gui.c "rectangles" equal in width (find the widest and make all of them equaly wide)  -DONE!
 
 */
