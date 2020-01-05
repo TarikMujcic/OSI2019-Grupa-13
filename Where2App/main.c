@@ -9,8 +9,7 @@
 //Version 2.1.2020.  (1)
 int main()
 {
-    int accountOption;          //variable to store the option that user chooses for which part of app he wants to use
-    char accOptionHelp[64];     //helper variable to store original input
+    int  accountOption;         //variable to store the option that user chooses for which part of app he wants to use
 
     welcomeScreenGui();         //function for welcome screen and loading
     do                          //in the rest of the code i will be referring to this do...while loop as: FIRST(MAIN) DO...WHILE LOOP
@@ -19,13 +18,16 @@ int main()
         int wrongOption = 0;    //variable to use for help to print out Error if user types in wrong option
         printUserOptions();
 
+        char accOptionHelp[10];     //variable to take leftovers from the input stream
+
         do
         {
             if(wrongOption)
+            {
                 printf("That is not a valid option! Try again!\n\n");
-            printf("Your option is:");
-            fgets(accOptionHelp,63,stdin);                        //store original input into the helper variable
-            accountOption=validAccountOption(accOptionHelp);      //check the input
+                gets(accOptionHelp);
+            }
+            printf("Your option is:"); scanf("%d", &accountOption);
             wrongOption = 1;
         }
         while (accountOption < 1 || accountOption > 3);

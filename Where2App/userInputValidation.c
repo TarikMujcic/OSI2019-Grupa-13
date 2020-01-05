@@ -5,6 +5,7 @@ provided by user is correct/available for use or not*/
 #include "adminMainFunctions.h"
 
 
+/*  Old solution for account option problem
 int validAccountOption(char *userInput)
 {
     int length=strlen(userInput);
@@ -18,6 +19,7 @@ int validAccountOption(char *userInput)
     else
         return 0;
 }
+*/
 
 int availableUsername(char *newUsername)
 {

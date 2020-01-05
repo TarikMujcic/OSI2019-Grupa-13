@@ -8,18 +8,21 @@ void adminMain()
     int successfulLogin = logRegForm();         //variable to check if the login was successful
     if(successfulLogin == 1)
     {
-        int option;                         //variable to take the number for users option
+        int option;                             //variable to take the number for users option
+        char optionHelp[10];                    //variable to take leftovers from the input stream
         do
         {
             system("cls");
             printOptionsAdminPart();
-            int wrongOption = 0;            //variable to use for help to print out Error if user types in wrong option
+            int wrongOption = 0;                //variable to use for help to print out Error if user types in wrong option
             do
             {
                 if(wrongOption)
+                {
                     printf("That is not a valid option! Try again! \n\n");
-                printf("Your choice: ");
-                scanf("%d",&option);
+                    gets(optionHelp);
+                }
+                printf("Your choice: "); scanf("%d",&option);
                 wrongOption = 1;
             }
             while(option < 1 || option > 6);

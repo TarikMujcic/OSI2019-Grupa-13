@@ -21,8 +21,8 @@ void printLoading()
     printf("\n");
     printf("                      LOADING...                   \n");
     printf("||=============");Sleep(1200);
-                    printf("======================");Sleep(1800);
-                                         printf("============||\n");Sleep(1000);
+                    printf("=========================");Sleep(1800);
+                                             printf("================||\n");Sleep(750);
 }
 
 void welcomeScreenGui()
@@ -53,6 +53,7 @@ void printUserOptions()
 
 void printLogRegOptions()
 {
+    system("cls");
     printf("==========================================================\n");
     printf("||                                                      ||\n");
     printf("||                                                      ||\n");
@@ -101,7 +102,7 @@ void printRegLoading()
 void printGoodbye()
 {
     printf("           GOODBYE AND HAVE A NICE DAY !           \n");
-        printf("||=============");Sleep(1200);
-                        printf("======================");Sleep(1800);
-                                             printf("============||\n");Sleep(1000);
+    printf("||=============");Sleep(1200);
+                    printf("=========================");Sleep(1800);
+                                             printf("================||\n");Sleep(750);
 }

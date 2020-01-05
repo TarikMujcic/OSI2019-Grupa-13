@@ -71,3 +71,45 @@
 
 1578200228 c:\users\danil\onedrive\documents\osi aplikacija\where2app\eventfunctions.h
 
+1578235339 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmain.c
+	"adminMainFunctions.h"
+
+1578153803 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.h
+	<stdio.h>
+	<windows.h>
+	"gui.h"
+
+1578185155 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\gui.h
+	<stdio.h>
+	<windows.h>
+
+1578237248 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.c
+	"adminMainFunctions.h"
+	"userInputValidation.h"
+
+1578235048 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\userinputvalidation.h
+
+1578236769 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\exitmain.c
+	"gui.h"
+
+1578237182 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\gui.c
+	"gui.h"
+
+1578235048 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\userinputvalidation.c
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+
+1578153803 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\usermain.c
+
+1578153803 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\usermainfunctions.c
+
+1578235339 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\main.c
+	<stdio.h>
+	<stdlib.h>
+	"gui.h"
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+	"eventFunctions.h"
+
+1578200228 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\eventfunctions.h
+

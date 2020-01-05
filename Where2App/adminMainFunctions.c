@@ -119,12 +119,16 @@ int logRegForm()
         fclose(databaseAdminFile);  //if there is a file just close it because this is just a check if there are any registered admins
 
     printLogRegOptions();
-    int wrongOption = 0,            //variable to use for help to print out Error if user types in wrong option
-        option;
+    int  wrongOption = 0,           //variable to use for help to print out Error if user types in wrong option
+         option;                    //variable to take the number for users option
+    char optionHelp[10];                //variable to take leftovers from the input stream
     do
     {
         if(wrongOption)
+        {
             printf("That is not a valid option! Try again! \n\n");
+            gets(optionHelp);
+        }
         printf("Your choice: ");
         scanf("%d",&option);
         wrongOption = 1;
