@@ -155,3 +155,24 @@ int logRegForm()
 }
 
 
+
+
+
+int searchCategFile(FILE* categoriesFile, char* category)
+{
+    char* temp = (char*)calloc(1, sizeof(char));
+    while(fscanf(categoriesFile, "%s \n", temp) != EOF)
+        if(strcmp(category, temp) == 0) return 1;
+    return 0;
+}
+
+void placeCategory(FILE* categoriesFile, char* category)
+{
+    fprintf(categoriesFile, "%s \n", category);
+    printf("\nThe category %s has been created.", category);
+}
+
+
+
+
+

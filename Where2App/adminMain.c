@@ -45,7 +45,17 @@ void adminMain()
             ///////////---------------------------------------  A D D    C A T E G O R Y  -------------------------------------------------------------
             if(option == 4)
             {
-
+                char* newCategory = (char*)calloc(1, sizeof(char));
+                FILE* categoriesFile;
+                printf("\nNew category: ");
+                scanf("%s", newCategory);
+                if (( categoriesFile = fopen("Categories.txt", "a+")) != NULL)
+                {
+                    if(searchCategFile(categoriesFile, newCategory) == 0)
+                        placeCategory(categoriesFile, newCategory);
+                    else printf("A category with the same name already exists!");
+                    fclose(categoriesFile);
+                }
             }
             ///////////-----------------------------------  D E L E T E    C A T E G O R Y  -----------------------------------------------------------
             else if(option == 5)
