@@ -201,3 +201,49 @@
 
 1578333738 source:c:\users\danil\onedrive\documents\osiproject\6.1clone\where2app\usermainfunctions.c
 
+1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\adminmain.c
+	"adminMainFunctions.h"
+
+1578346345 c:\users\danil\onedrive\documents\osiproject\milana\where2app\adminmainfunctions.h
+	<stdio.h>
+	<windows.h>
+	"gui.h"
+
+1578346345 c:\users\danil\onedrive\documents\osiproject\milana\where2app\gui.h
+	<stdio.h>
+	<windows.h>
+
+1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\adminmainfunctions.c
+	"adminMainFunctions.h"
+	"userInputValidation.h"
+
+1578346345 c:\users\danil\onedrive\documents\osiproject\milana\where2app\userinputvalidation.h
+
+1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\eventfunctions.c
+	"eventFunctions.h"
+	"adminMainFunctions.h"
+
+1578346658 c:\users\danil\onedrive\documents\osiproject\milana\where2app\eventfunctions.h
+
+1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\exitmain.c
+	"gui.h"
+
+1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\gui.c
+	"gui.h"
+
+1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\main.c
+	<stdio.h>
+	<stdlib.h>
+	"gui.h"
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+	"eventFunctions.h"
+
+1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\userinputvalidation.c
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+
+1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\usermain.c
+
+1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\usermainfunctions.c
+

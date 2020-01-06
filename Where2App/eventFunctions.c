@@ -26,13 +26,16 @@ int eventIdSearch(int index)
     else
         return printf("ERROR! Couldn't open 'EventLookUp.txt' ...\n"),0;
 }
-void readNewEvent(EVENT *tmp)
+void readNewEvent(EVENT *tmp,int control)   //control==1 - read data about new event, control!=1 read new info about existing event
 {
     printf("PLEASE ENTER INFORMATION ABOUT YOUR EVENT:\n");
     printf("  Name of event:");
     scanf("%s",tmp->eventName);
-    printf("  Event identification number:");
-    scanf("%d",&tmp->eventID);
+    if(control==1)                         //we don't need a new ID number if we're just updating
+    {
+        printf("  Event identification number:");
+        scanf("%d",&tmp->eventID);
+    }
     printf("  Add description for event:");
     scanf("%s",tmp->eventDescription);
     printf("  Date (dd.mm.yy):");
@@ -45,9 +48,10 @@ int createNewEvent()
     FILE *eventDatabaseFile,*eventLookUp;
     EVENT newEvent;
     INDEX eventIndex;
-    readNewEvent(&newEvent);
+    readNewEvent(&newEvent,1);                   //second argument is 1 because we're reading info about a new event
     if(eventIdSearch(newEvent.eventID)==0)       //if the event can be created, add it to the database
-    {                                            //other criteria for this condition will be added later
+    {
+        //other criteria for this condition will be added later
 
         if((eventDatabaseFile=fopen("eventDatabase.dat","ab"))!=NULL)
         {
@@ -70,4 +74,27 @@ int createNewEvent()
     }
     else
         return printf("THAT EVENT CAN'T BE CREATED! PLEASE TRY AGAIN.\n\n"),0;
+}
+int updateEvent()                  //return value: 1-successful update, 0-event doesn't exist
+{
+    FILE *eventDatabaseFile;
+    EVENT updatedEvent;
+    int address,eventID;
+    printf("Enter ID of the event you want to update:");
+    scanf("%d",&eventID);
+    if((address=eventIdSearch(eventID))!=0)
+    {
+        readNewEvent(&updatedEvent,0);        //set control to 0 - function will read new info about an existing event
+        if((eventDatabaseFile=fopen("eventDatabase.dat","r+b"))!=NULL)
+        {
+            fseek(eventDatabaseFile,address,SEEK_SET);
+            fwrite(&updatedEvent,sizeof(EVENT),1,eventDatabaseFile);
+            fclose(eventDatabaseFile);
+            return printf("\nEvent was successfully updated!\n"),1;
+        }
+        else
+            return printf("Error! Couldn't open file called 'eventDatabase.dat'!"),0;
+    }
+    else
+        return printf("\nError! You can't update events that don't exist. Make sure you have a correct ID and try again!\n"),0;
 }
