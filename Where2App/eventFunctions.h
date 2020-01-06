@@ -15,7 +15,7 @@ typedef struct index
     int idNum,address;
 }INDEX;
 
-int eventIdSearch();              //function that checks whether the event exists or not
+int eventIdSearch(int );              //function that checks whether the event exists or not
 int createNewEvent();            //function for creation of events
 void readNewEvent(EVENT *);      //function for getting info about new event
 
