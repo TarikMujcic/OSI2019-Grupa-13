@@ -29,13 +29,14 @@ int main()
             }
             printf("Your option is:"); scanf("%d", &accountOption);
             wrongOption = 1;
+
         }
         while (accountOption < 1 || accountOption > 3);
 
         //===================================================== accountOption == USER =======================================================
         if(accountOption == 1)
         {
-
+            userMain();
         }
 
         //===================================================== accountOption == ADMIN ======================================================

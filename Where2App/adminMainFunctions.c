@@ -139,6 +139,7 @@ int logRegForm()
     if(option == 1)
     {
         login();
+        return 1;
     }
     /////////////////------------------------------------------ R E G I S T E R ----------------------------------------------------------------
     else if(option == 2)
@@ -147,11 +148,12 @@ int logRegForm()
         printRegLoading();
         printf("Your registration was successful!\nYou need to log into your account to proceed: \n");
         login();
+        return 1;
     }
     ///////////--------------------------------------------------- C A N C E L  ----------------------------------------------------------------
     else if(option == 3)
         return 0;
-    return 0;
+
 }
 
 

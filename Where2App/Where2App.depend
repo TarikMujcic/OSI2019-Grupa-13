@@ -71,19 +71,19 @@
 
 1578200228 c:\users\danil\onedrive\documents\osi aplikacija\where2app\eventfunctions.h
 
-1578235339 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmain.c
+1578401408 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmain.c
 	"adminMainFunctions.h"
 
-1578153803 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.h
+1578321961 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.h
 	<stdio.h>
 	<windows.h>
 	"gui.h"
 
-1578185155 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\gui.h
+1578400748 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\gui.h
 	<stdio.h>
 	<windows.h>
 
-1578237248 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.c
+1578399369 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.c
 	"adminMainFunctions.h"
 	"userInputValidation.h"
 
@@ -92,18 +92,18 @@
 1578236769 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\exitmain.c
 	"gui.h"
 
-1578237182 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\gui.c
+1578400748 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\gui.c
 	"gui.h"
 
 1578235048 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\userinputvalidation.c
 	"userInputValidation.h"
 	"adminMainFunctions.h"
 
-1578153803 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\usermain.c
+1578400832 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\usermain.c
 
 1578153803 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\usermainfunctions.c
 
-1578235339 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\main.c
+1578400748 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\main.c
 	<stdio.h>
 	<stdlib.h>
 	"gui.h"
@@ -111,7 +111,7 @@
 	"adminMainFunctions.h"
 	"eventFunctions.h"
 
-1578200228 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\eventfunctions.h
+1578398487 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\eventfunctions.h
 
 1578252765 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\adminmain.c
 	"adminMainFunctions.h"
@@ -246,4 +246,8 @@
 1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\usermain.c
 
 1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\usermainfunctions.c
+
+1578401408 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\eventfunctions.c
+	"eventFunctions.h"
+	"adminMainFunctions.h"
 

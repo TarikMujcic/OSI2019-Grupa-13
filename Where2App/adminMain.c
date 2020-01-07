@@ -12,7 +12,6 @@ void adminMain()
         char optionHelp[10];                    //variable to take leftovers from the input stream
         do
         {
-            system("cls");
             printOptionsAdminPart();
             int wrongOption = 0;                //variable to use for help to print out Error if user types in wrong option
             do
@@ -30,7 +29,7 @@ void adminMain()
             ///////////---------------------------------------   C R E A T E    E V E N T  ------------------------------------------------------------
             if(option == 1)
             {
-               //createNewEvent();
+               createNewEvent();
             }
             ///////////---------------------------------------   U P D A T E    E V E N T  ------------------------------------------------------------
             else if(option == 2)
@@ -47,13 +46,15 @@ void adminMain()
             {
                 char* newCategory = (char*)calloc(1, sizeof(char));
                 FILE* categoriesFile;
-                printf("\nNew category: ");
+                printf("\nName of category: ");
                 scanf("%s", newCategory);
                 if (( categoriesFile = fopen("Categories.txt", "a+")) != NULL)
                 {
                     if(searchCategFile(categoriesFile, newCategory) == 0)
                         placeCategory(categoriesFile, newCategory);
-                    else printf("A category with the same name already exists!");
+                    else
+                        printf("A category with the same name already exists!\n");
+                    system("pause");
                     fclose(categoriesFile);
                 }
             }

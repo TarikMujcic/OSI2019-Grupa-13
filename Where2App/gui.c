@@ -69,6 +69,7 @@ void printLogRegOptions()
 
 void printOptionsAdminPart()
 {
+    system("cls");
     printf("==========================================================\n");
     printf("||                                                      ||\n");
     printf("||                                                      ||\n");
@@ -90,12 +91,28 @@ void printRegLoading()
     printf("\n");
     printf("                 REGISTRATION IN PROCESS...               \n");
     printf("||=============");Sleep(1200);
-                    printf("======================");Sleep(1800);
-                                         printf("============||\n");Sleep(1000);
-    system("cls");
+                    printf("=========================");Sleep(1800);
+                                             printf("================||\n");Sleep(750);
 }
 
+
 ///For userMain////////////////////////////////////////////////////////////
+
+void printOptionsUserPart()
+{
+    system("cls");
+    printf("==========================================================\n");
+    printf("||                                                      ||\n");
+    printf("||                                                      ||\n");
+    printf("||           CHOOSE AN OPTION:                          ||\n");
+    printf("||           1) VIEW EVENTS       -> Type in '1'        ||\n");
+    printf("||           2) PLAY QUIZ         -> Type in '2'        ||\n");
+    printf("||           3) EXIT              -> Type in '3'        ||\n");
+    printf("||                                                      ||\n");
+    printf("||                                                      ||\n");
+    printf("==========================================================\n");
+    printf("\n");
+}
 
 
 ///For exitMain////////////////////////////////////////////////////////////

@@ -29,18 +29,18 @@ int eventIdSearch(int index)
 void readNewEvent(EVENT *tmp,int control)   //control==1 - read data about new event, control!=1 read new info about existing event
 {
     printf("PLEASE ENTER INFORMATION ABOUT YOUR EVENT:\n");
-    printf("  Name of event:");
-    scanf("%s",tmp->eventName);
+    printf("  Name of event: ");
+    scanf("%s", tmp->eventName);
     if(control==1)                         //we don't need a new ID number if we're just updating
     {
-        printf("  Event identification number:");
+        printf("  Event identification number: ");
         scanf("%d",&tmp->eventID);
     }
-    printf("  Add description for event:");
+    printf("  Add description for event: ");
     scanf("%s",tmp->eventDescription);
-    printf("  Date (dd.mm.yy):");
+    printf("  Date (dd.mm.yy): ");
     scanf("%d.%d.%d",&tmp->day,&tmp->month,&tmp->year);
-    printf("  Time (hh:mm):");
+    printf("  Time (hh:mm): ");
     scanf("%d:%d",&tmp->hours,&tmp->minutes);
 }
 int createNewEvent()

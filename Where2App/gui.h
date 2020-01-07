@@ -14,12 +14,13 @@ void printUserOptions();        //function to print out options for which part o
 
 ///For adminMain
 
-void printLogRegOptions();     //help function for logRegForm() (from adminMainFunctions) - to print out options
-void printOptionsAdminPart();  //help function to print out options for admins
+void printLogRegOptions();      //help function for logRegForm() (from adminMainFunctions) - to print out options
+void printOptionsAdminPart();   //function to print out options for admins
 void printRegLoading();
 
 ///For userMain
 
+void printOptionsUserPart();    //function to print out options for regular users
 
 ///For exitMain
 void printGoodbye();            //function to print out goodbye message on the screen
