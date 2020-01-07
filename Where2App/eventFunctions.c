@@ -1,5 +1,5 @@
 /*Header file for event handling functions*/
-
+///test for smartGit DT
 #include "eventFunctions.h"
 #include "adminMainFunctions.h"
 
