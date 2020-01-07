@@ -174,7 +174,40 @@ void placeCategory(FILE* categoriesFile, char* category)
     printf("\nThe category %s has been created.", category);
 }
 
-
+void deleteCategory(FILE* categoriesFile, FILE* tmpFile, char* category)
+{
+    char* tmpString = (char*)calloc(1, sizeof(char));
+    int finder = 0;                                                 //variable which we use to confirm if we find matching category in file
+    if((categoriesFile = fopen("Categories.txt", "r")) != NULL)
+    {                                                               /*tmpFile where we place all categories that are not
+                                                                      matched with the category which needs to be deleted*/
+        if((tmpFile = fopen("tmpFile.txt", "w")) != NULL)
+        {
+            while(fscanf(categoriesFile,"%s \n", tmpString) != EOF)
+            {
+                if(strcmp(tmpString, category) != 0)
+                    fprintf(tmpFile, "%s \n", tmpString);
+                else finder++;
+            }
+            if(!finder)
+                return printf("\nNo matching category has been found!");
+            fclose(tmpFile);
+        }
+        fclose(categoriesFile);
+    }
+    if((tmpFile = fopen("tmpFile.txt", "r")) != NULL)
+    {
+        if((categoriesFile = fopen("Categories.txt", "w")) != NULL)
+        {
+            while(fscanf(tmpFile, "%s \n", tmpString) != EOF)
+                fprintf(categoriesFile, "%s \n", tmpString);
+            fclose(categoriesFile);
+        }
+        fclose(tmpFile);
+    }
+    printf("\nThe category '%s' has been sucessfully removed!", category);
+    free(tmpString);
+}
 
 
 

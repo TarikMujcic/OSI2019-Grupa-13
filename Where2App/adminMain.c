@@ -39,7 +39,11 @@ void adminMain()
             ///////////---------------------------------------   D E L E T E   E V E N T  -------------------------------------------------------------
             else if(option == 3)
             {
-
+                //add function which prints out events so the user can see event ID's
+                int eventID;
+                printf("Event ID: ");
+                scanf("%d", &eventID);
+                deleteEvent(eventID);
             }
             ///////////---------------------------------------  A D D    C A T E G O R Y  -------------------------------------------------------------
             if(option == 4)
@@ -57,11 +61,18 @@ void adminMain()
                     system("pause");
                     fclose(categoriesFile);
                 }
+                free(newCategory);
             }
             ///////////-----------------------------------  D E L E T E    C A T E G O R Y  -----------------------------------------------------------
             else if(option == 5)
             {
-
+                FILE* categoriesFile = NULL,
+                      tmpFile = NULL;
+                char* category = (char*)calloc(1, sizeof(char));
+                printf("\nName of category: ");
+                scanf("%s", category);
+                deleteCategory(categoriesFile, tmpFile, category);
+                free(category);
             }
             ///////////---------------------------------------------------   E X I T   ----------------------------------------------------------------
             else if(option == 6)

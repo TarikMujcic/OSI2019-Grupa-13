@@ -98,3 +98,25 @@ int updateEvent()                  //return value: 1-successful update, 0-event 
     else
         return printf("\nError! You can't update events that don't exist. Make sure you have a correct ID and try again!\n"),0;
 }
+
+void deleteEvent(int eventID)
+{
+    FILE *eventDatabaseFile;
+    EVENT emptyEvent = {0};
+    int adress;                                 //variable to store adress from from eventLookUp.txt
+    if((adress = eventIdSearch(eventID)) != 0)
+    {
+        readNewEvent(&emptyEvent,0);
+        if((eventDatabaseFile=fopen("eventDatabase.dat","r+b"))!=NULL)
+        {
+            fseek(eventDatabaseFile,adress,SEEK_SET);
+            fwrite(&emptyEvent,sizeof(EVENT),1,eventDatabaseFile);
+            fclose(eventDatabaseFile);
+            return printf("\nEvent was successfully deleted!\n"),1;
+        }
+        else
+            return printf("\nError! Couldn't open file called 'eventDatabase.dat'!"),0;
+    }
+    else
+        return printf("No event with a matching ID has been found!\n");
+}

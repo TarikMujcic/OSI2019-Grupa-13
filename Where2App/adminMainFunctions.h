@@ -18,10 +18,9 @@ void registration();                 //help function for logRegForm() - to make 
 void login();                        //help function for logRegForm() - to login into existing account
 int logRegForm();
 
-int searchCategFile(FILE* categoriesFile, char* category);      //function that searches for a category within a file
-void placeCategory(FILE* categoriesFile, char* category);       //function that places a new category in a file
-
-
+int searchCategFile(FILE* categoriesFile, char* category);                  //function that searches for a category within a file
+void placeCategory(FILE* categoriesFile, char* category);                   //function that places a new category in a file
+void deleteCategory(FILE* categoriesFile, FILE* tmpFile, char* category);   //function that deletes selected category
 
 
 

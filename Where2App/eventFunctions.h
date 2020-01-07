@@ -19,7 +19,8 @@ int eventIdSearch(int );          //function that checks whether the event exist
 int createNewEvent();             //function for creation of events
 void readNewEvent(EVENT *,int);   //function for getting info about new event
 int updateEvent();                //function for updating event info
+void deleteEvent(int eventID);    //function for deleting event
 
-///YOU CAN ADD THE REST OF YOUR EVENT FUNCTIONS HERE
+
 
 #endif // EVENTFUNCTIONS_H_INCLUDED
