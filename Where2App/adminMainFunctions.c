@@ -159,7 +159,6 @@ int logRegForm()
 
 
 
-
 int searchCategFile(FILE* categoriesFile, char* category)
 {
     char* temp = (char*)calloc(1, sizeof(char));
@@ -171,7 +170,7 @@ int searchCategFile(FILE* categoriesFile, char* category)
 void placeCategory(FILE* categoriesFile, char* category)
 {
     fprintf(categoriesFile, "%s \n", category);
-    printf("\nThe category %s has been created.", category);
+    printf("\nThe category %s has been created.\n", category);
 }
 
 void deleteCategory(FILE* categoriesFile, FILE* tmpFile, char* category)

@@ -6,7 +6,10 @@
 typedef struct event              //if you have a better idea, feel free to change this
 {
     int eventID,year,month,day,hours,minutes;
-    char eventName[32],eventDescription[200],eventLocation[32],eventType[20];
+    char eventName[32],
+         eventDescription[200],
+         eventLocation[32],
+         eventCategory[20];
 }
 EVENT;
 

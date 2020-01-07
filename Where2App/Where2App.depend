@@ -71,10 +71,10 @@
 
 1578200228 c:\users\danil\onedrive\documents\osi aplikacija\where2app\eventfunctions.h
 
-1578401408 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmain.c
+1578427460 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmain.c
 	"adminMainFunctions.h"
 
-1578321961 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.h
+1578423143 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.h
 	<stdio.h>
 	<windows.h>
 	"gui.h"
@@ -83,7 +83,7 @@
 	<stdio.h>
 	<windows.h>
 
-1578399369 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.c
+1578427382 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\adminmainfunctions.c
 	"adminMainFunctions.h"
 	"userInputValidation.h"
 
@@ -103,7 +103,7 @@
 
 1578153803 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\usermainfunctions.c
 
-1578400748 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\main.c
+1578426278 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\main.c
 	<stdio.h>
 	<stdlib.h>
 	"gui.h"
@@ -111,7 +111,7 @@
 	"adminMainFunctions.h"
 	"eventFunctions.h"
 
-1578398487 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\eventfunctions.h
+1578425130 c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\eventfunctions.h
 
 1578252765 source:c:\users\danil\onedrive\documents\osiproject\newclone1\where2app\adminmain.c
 	"adminMainFunctions.h"
@@ -247,7 +247,7 @@
 
 1578346345 source:c:\users\danil\onedrive\documents\osiproject\milana\where2app\usermainfunctions.c
 
-1578401408 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\eventfunctions.c
+1578427460 source:c:\users\tarik mujcic\desktop\smartgit projects\where2app\where2app\eventfunctions.c
 	"eventFunctions.h"
 	"adminMainFunctions.h"
 

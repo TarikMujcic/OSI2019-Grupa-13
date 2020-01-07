@@ -26,23 +26,59 @@ int eventIdSearch(int index)
     else
         return printf("ERROR! Couldn't open 'EventLookUp.txt' ...\n"),0;
 }
-void readNewEvent(EVENT *tmp,int control)   //control==1 - read data about new event, control!=1 read new info about existing event
+
+void readNewEvent(EVENT *event,int control)
 {
-    printf("PLEASE ENTER INFORMATION ABOUT YOUR EVENT:\n");
-    printf("  Name of event: ");
-    scanf("%s", tmp->eventName);
-    if(control==1)                         //we don't need a new ID number if we're just updating
+    int count=0,i,option=0;
+    FILE *categoryFile;
+    char categoryArray[20][20]= {},categoryHelp[20];
+    if((categoryFile=fopen("eventCategory.txt","r"))!=NULL)
     {
-        printf("  Event identification number: ");
-        scanf("%d",&tmp->eventID);
+        while(fscanf(categoryFile,"%s",categoryHelp)!=EOF)
+        {
+            strcpy(categoryArray[count],categoryHelp);
+            count++;
+        }
+        fclose(categoryFile);
     }
-    printf("  Add description for event: ");
-    scanf("%s",tmp->eventDescription);
-    printf("  Date (dd.mm.yy): ");
-    scanf("%d.%d.%d",&tmp->day,&tmp->month,&tmp->year);
-    printf("  Time (hh:mm): ");
-    scanf("%d:%d",&tmp->hours,&tmp->minutes);
+    else
+    {
+        printf("Error! Can't open 'eventCategory.txt' file!\n");
+        return;
+    }
+    printf("PLEASE ENTER INFORMATION ABOUT YOUR EVENT: \n");
+    printf("  Name of event:     "); getchar(); gets(event->eventName);                   //ovaj dio je problematican; tu nastaje greska
+    if(control==1)
+    {
+        printf("  Event ID number:   "); scanf("%d",&event->eventID);
+    }
+    printf("  Location:          "); getchar(); gets(event->eventLocation);
+    printf("  Event description: "); fgets(event->eventDescription,199,stdin);
+    printf("  Date (dd.mm.yy.):  "); scanf("%d.%d.%d.",&event->day,&event->month,&event->year);
+    printf("  Time (hh:mm):      "); scanf("%d:%d",&event->hours,&event->minutes);
+    if(count>0)
+    {
+        printf("  Choose event category:\n");
+        for(i=0; i<count; i++)
+            printf("    Type '%d' to select '%s'.\n", i+1, categoryArray[i]);
+        char optionHelp[10];                //variable to take leftovers from the input stream
+        int wrongOption = 0;                //variable to use for help to print out Error if user types in wrong option
+        do
+        {
+            if(wrongOption)
+            {
+                printf("That is not a valid option! Try again! \n\n");
+                gets(optionHelp);
+            }
+            printf("Your choice: "); scanf("%d", &option);
+            wrongOption = 1;
+        }
+        while(option < 1 || option > count);
+        strcpy(event->eventCategory, categoryArray[option - 1]);
+    }
 }
+
+
 int createNewEvent()
 {
     FILE *eventDatabaseFile,*eventLookUp;
@@ -70,11 +106,17 @@ int createNewEvent()
         else
             printf("Error! Couldn't open event look-up file!\n\n");
         printf("\nYOUR EVENT WAS SUCCESSFULLY CREATED!\n\n");
+        system("pause");
         return 1;
     }
     else
-        return printf("THAT EVENT CAN'T BE CREATED! PLEASE TRY AGAIN.\n\n"),0;
+    {
+        return printf("THAT EVENT CAN'T BE CREATED! PLEASE TRY AGAIN.\n\n");
+        system("pause");
+        return 0;
+    }
 }
+
 int updateEvent()                  //return value: 1-successful update, 0-event doesn't exist
 {
     FILE *eventDatabaseFile;

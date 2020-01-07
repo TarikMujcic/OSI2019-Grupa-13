@@ -50,9 +50,8 @@ void adminMain()
             {
                 char* newCategory = (char*)calloc(1, sizeof(char));
                 FILE* categoriesFile;
-                printf("\nName of category: ");
-                scanf("%s", newCategory);
-                if (( categoriesFile = fopen("Categories.txt", "a+")) != NULL)
+                printf("\nName of category: "); getchar(); gets(newCategory);
+                if (( categoriesFile = fopen("eventCategory.txt", "a+")) != NULL)
                 {
                     if(searchCategFile(categoriesFile, newCategory) == 0)
                         placeCategory(categoriesFile, newCategory);
@@ -66,8 +65,8 @@ void adminMain()
             ///////////-----------------------------------  D E L E T E    C A T E G O R Y  -----------------------------------------------------------
             else if(option == 5)
             {
-                FILE* categoriesFile = NULL,
-                      tmpFile = NULL;
+                FILE *categoriesFile = NULL,
+                     *tmpFile = NULL;
                 char* category = (char*)calloc(1, sizeof(char));
                 printf("\nName of category: ");
                 scanf("%s", category);
