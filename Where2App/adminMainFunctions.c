@@ -153,7 +153,7 @@ int logRegForm()
     ///////////--------------------------------------------------- C A N C E L  ----------------------------------------------------------------
     else if(option == 3)
         return 0;
-
+    return 0;
 }
 
 
@@ -173,9 +173,25 @@ void placeCategory(FILE* categoriesFile, char* category)
     printf("\nThe category %s has been created.\n", category);
 }
 
-void deleteCategory(FILE* categoriesFile, FILE* tmpFile, char* category)
+void printCategories()
 {
-    char* tmpString = (char*)calloc(1, sizeof(char));
+    FILE* categoriesFile = NULL;
+    char tmpString[21];
+    if((categoriesFile = fopen("Categories.txt", "r")) != NULL)
+    {
+        printf("Existing categories: \n");
+        while(fscanf(categoriesFile, "%s \n", tmpString) != EOF)
+            printf("%s \n", tmpString);
+        fclose(categoriesFile);
+    }
+
+}
+
+void deleteCategory(char* category)
+{
+    FILE *categoriesFile = NULL,
+         *tmpFile = NULL;
+    char tmpString[21];
     int finder = 0;                                                 //variable which we use to confirm if we find matching category in file
     if((categoriesFile = fopen("Categories.txt", "r")) != NULL)
     {                                                               /*tmpFile where we place all categories that are not
@@ -205,7 +221,6 @@ void deleteCategory(FILE* categoriesFile, FILE* tmpFile, char* category)
         fclose(tmpFile);
     }
     printf("\nThe category '%s' has been sucessfully removed!", category);
-    free(tmpString);
 }
 
 

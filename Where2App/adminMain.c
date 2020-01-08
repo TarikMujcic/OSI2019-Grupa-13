@@ -2,6 +2,7 @@
 (for Administrator part of the app)*/
 
 #include "adminMainFunctions.h"
+#include "eventFunctions.h"
 
 void adminMain()
 {
@@ -48,7 +49,7 @@ void adminMain()
             ///////////---------------------------------------  A D D    C A T E G O R Y  -------------------------------------------------------------
             if(option == 4)
             {
-                char* newCategory = (char*)calloc(1, sizeof(char));
+                char newCategory[21];
                 FILE* categoriesFile;
                 printf("\nName of category: "); getchar(); gets(newCategory);
                 if (( categoriesFile = fopen("eventCategory.txt", "a+")) != NULL)
@@ -60,18 +61,15 @@ void adminMain()
                     system("pause");
                     fclose(categoriesFile);
                 }
-                free(newCategory);
             }
             ///////////-----------------------------------  D E L E T E    C A T E G O R Y  -----------------------------------------------------------
             else if(option == 5)
             {
-                FILE *categoriesFile = NULL,
-                     *tmpFile = NULL;
-                char* category = (char*)calloc(1, sizeof(char));
+                char category[21];
+                printCategories();
                 printf("\nName of category: ");
                 scanf("%s", category);
-                deleteCategory(categoriesFile, tmpFile, category);
-                free(category);
+                deleteCategory(category);
             }
             ///////////---------------------------------------------------   E X I T   ----------------------------------------------------------------
             else if(option == 6)

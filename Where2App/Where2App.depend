@@ -251,3 +251,50 @@
 	"eventFunctions.h"
 	"adminMainFunctions.h"
 
+1578496430 source:c:\users\dušan\desktop\osiprojekat\where2app\adminmain.c
+	"adminMainFunctions.h"
+	"eventFunctions.h"
+
+1578496100 c:\users\dušan\desktop\osiprojekat\where2app\adminmainfunctions.h
+	<stdio.h>
+	<windows.h>
+	"gui.h"
+
+1578496583 c:\users\dušan\desktop\osiprojekat\where2app\gui.h
+	<stdio.h>
+	<windows.h>
+
+1578496583 c:\users\dušan\desktop\osiprojekat\where2app\eventfunctions.h
+
+1578496288 source:c:\users\dušan\desktop\osiprojekat\where2app\adminmainfunctions.c
+	"adminMainFunctions.h"
+	"userInputValidation.h"
+
+1578496583 c:\users\dušan\desktop\osiprojekat\where2app\userinputvalidation.h
+
+1578496583 source:c:\users\dušan\desktop\osiprojekat\where2app\eventfunctions.c
+	"eventFunctions.h"
+	"adminMainFunctions.h"
+
+1578496583 source:c:\users\dušan\desktop\osiprojekat\where2app\exitmain.c
+	"gui.h"
+
+1578496583 source:c:\users\dušan\desktop\osiprojekat\where2app\gui.c
+	"gui.h"
+
+1578496583 source:c:\users\dušan\desktop\osiprojekat\where2app\main.c
+	<stdio.h>
+	<stdlib.h>
+	"gui.h"
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+	"eventFunctions.h"
+
+1578496583 source:c:\users\dušan\desktop\osiprojekat\where2app\userinputvalidation.c
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+
+1578496583 source:c:\users\dušan\desktop\osiprojekat\where2app\usermain.c
+
+1578496583 source:c:\users\dušan\desktop\osiprojekat\where2app\usermainfunctions.c
+

@@ -20,7 +20,8 @@ int logRegForm();
 
 int searchCategFile(FILE* categoriesFile, char* category);                  //function that searches for a category within a file
 void placeCategory(FILE* categoriesFile, char* category);                   //function that places a new category in a file
-void deleteCategory(FILE* categoriesFile, FILE* tmpFile, char* category);   //function that deletes selected category
+void printCategories();                                                     //function that prints out existing categories
+void deleteCategory(char* category);                                        //function that deletes selected category
 
 
 
