@@ -298,3 +298,50 @@
 
 1578496583 source:c:\users\dušan\desktop\osiprojekat\where2app\usermainfunctions.c
 
+1578521358 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\adminmain.c
+	"adminMainFunctions.h"
+	"eventFunctions.h"
+
+1578521872 c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\adminmainfunctions.h
+	<stdio.h>
+	<windows.h>
+	"gui.h"
+
+1578521358 c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\gui.h
+	<stdio.h>
+	<windows.h>
+
+1578522270 c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\eventfunctions.h
+
+1578521358 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\adminmainfunctions.c
+	"adminMainFunctions.h"
+	"userInputValidation.h"
+
+1578521358 c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\userinputvalidation.h
+
+1578522100 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\eventfunctions.c
+	"eventFunctions.h"
+	"adminMainFunctions.h"
+
+1578521358 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\exitmain.c
+	"gui.h"
+
+1578521358 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\gui.c
+	"gui.h"
+
+1578521358 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\main.c
+	<stdio.h>
+	<stdlib.h>
+	"gui.h"
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+	"eventFunctions.h"
+
+1578521358 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\userinputvalidation.c
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+
+1578521358 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\usermain.c
+
+1578521358 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\usermainfunctions.c
+
