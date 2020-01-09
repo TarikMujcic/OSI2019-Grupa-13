@@ -7,7 +7,8 @@
 typedef struct event
 {
     int  year,month,day,
-         hours,minutes;
+         hours,minutes,
+         durationHours, durationMinutes;
     char name[32],
          id[6],
          location[32],
@@ -31,14 +32,16 @@ typedef struct question         //struct that we use in quiz for questions
          answer3[25];
 } QUESTION;
 
-int eventIdSearch(char *);        //function that checks whether the event exists or not
+int eventIdSearch(char *index);        //function that checks whether the event with that ID already exists or not
+int isAvailable(EVENT* event);           //function that checks whether the location is available at that time
 int createNewEvent();             //function for creation of events
-void readNewEvent(EVENT *,int);   //function for getting info about new event
+void readNewEvent(EVENT *newEvent, int control);   //function for getting info about new event
 int updateEvent();                //function for updating event info
 void deleteEvent(char *eventID);  //function for deleting event
 
 int  searchCategFile(FILE* categoriesFile, char* category);                 //function that searches for a category within a file
-void placeCategory(FILE* categoriesFile, char* category);                   //function that places a new category in a file
+void writeCategory(FILE* categoriesFile, char* category);                   //help function for addNewCategory() that writes a new category in a file
+void addNewCategory(char* category);                                        //function which adds new category
 void printCategories();                                                     //function that prints out existing categories
 void deleteCategory(char* category);                                        //function that deletes selected category
 

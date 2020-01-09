@@ -56,13 +56,15 @@ void readNewEvent(EVENT *event,int control)         //control == 1 for new event
     }
     printf("  Location:            "); control ? getchar() : control ; gets(event->location);
     printf("  Event description:   "); gets(event->description);
-    printf("  Date [dd.mm.yy.]:    "); scanf("%d.%d.%d.",&event->day, &event->month, &event->year);
-    printf("  Time [hh:mm]:        "); scanf("%d:%d",&event->hours, &event->minutes);
+    printf("  Date [dd.mm.yy.]:    "); scanf("%d.%d.%d.", &event->day, &event->month, &event->year);
+    printf("  Time [hh:mm]:        "); scanf("%d:%d", &event->hours, &event->minutes);
+    printf("  Duration [hh:mm]     "); scanf("%d:%d", &event->durationHours, &event->durationMinutes);
     if(count>0)
     {
         printf("  Choose event category:\n");
         for(i=0; i<count; i++)
-            printf("    Type '%d' to select '%s'.\n", i+1, categoryArray[i]);
+            printf("    %-20s       -> Type in '%d'\n", categoryArray[i], i + 1);
+            printf("    NEW CATEGORY               -> Type in '%d'\n", i + 1);
         char optionHelp[10];                //variable to take leftovers from the input stream
         int wrongOption = 0;                //variable to use for help to print out Error if user types in wrong option
         do
@@ -75,8 +77,14 @@ void readNewEvent(EVENT *event,int control)         //control == 1 for new event
             printf("Your choice: "); scanf("%d", &option);
             wrongOption = 1;
         }
-        while(option < 1 || option > count);
-        strcpy(event->category, categoryArray[option - 1]);
+        while(option < 1 || option > count + 1);
+        if(option == count + 1)
+        {
+            printf("\nName of the new category: "); getchar(); gets(event->category);
+            addNewCategory(event->category);
+        }
+        else
+            strcpy(event->category, categoryArray[option - 1]);
     }
 }
 
@@ -87,7 +95,7 @@ int createNewEvent()
     EVENT newEvent;
     INDEX eventIndex;
     readNewEvent(&newEvent, 1);                   //second argument is 1 because we're reading info about a new event
-    if(eventIdSearch(newEvent.id) == -1)             //if the event can be created, add it to the database
+    if(eventIdSearch(newEvent.id) == -1)          //if the event can be created, add it to the database
     {
         //other criteria for this condition will be added later
 
@@ -158,10 +166,24 @@ int searchCategFile(FILE* categoriesFile, char* category)
     return 0;
 }
 
-void placeCategory(FILE* categoriesFile, char* category)
+void writeCategory(FILE* categoriesFile, char* category)
 {
     fprintf(categoriesFile, "%s\n", category);
     printf("\nThe category '%s' has been created.\n", category);
+}
+
+void addNewCategory(char* newCategory)
+{
+    FILE* categoriesFile;
+    if (( categoriesFile = fopen("eventCategory.txt", "a+")) != NULL)
+    {
+        if(searchCategFile(categoriesFile, newCategory) == 0)
+            writeCategory(categoriesFile, newCategory);
+        else
+            printf("A category with the same name already exists!\n");
+        system("pause");
+        fclose(categoriesFile);
+    }
 }
 
 void printCategories()

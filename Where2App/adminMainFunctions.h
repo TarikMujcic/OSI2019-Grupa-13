@@ -18,7 +18,7 @@ typedef struct admin
 void maskPassword(char *password);   //help function for login() and registration() - to hide the password when typing
 void registration();                 //help function for logRegForm() - to make a new registration
 void login();                        //help function for logRegForm() - to login into existing account
-int logRegForm();
+int  logRegForm();
 
 void configureQuiz();             //function for quiz configuration
 

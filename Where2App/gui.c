@@ -56,19 +56,16 @@ void printEventsInFormat()
     if((eventDatabaseFile = fopen("eventDatabase.dat", "rb")) != NULL)
     {
         printf("EVENTS:\n");
-        printf("===== ================================ ==================== ================================ =========== =====\n");
-        printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE        TIME \n");
-        printf("===== ================================ ==================== ================================ =========== =====\n");
+        printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+        printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE        TIME DURATION\n");
+        printf("===== ================================ ==================== ================================ =========== ===== =========\n");
         while(fread(eventTmp, sizeof(EVENT), 1, eventDatabaseFile))
-        {
-            printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d\n", eventTmp->id, eventTmp->name, eventTmp->category, eventTmp->location,
+            printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", eventTmp->id, eventTmp->name, eventTmp->category, eventTmp->location,
                                                                         eventTmp->day, eventTmp->month, eventTmp->year,
-                                                                        eventTmp->hours, eventTmp->minutes);
-            printf("      DESCRIPTION:\n      %s\n", eventTmp->description);
-        printf("----- -------------------------------- -------------------- -------------------------------- ----------- -----\n");
-        }
+                                                                        eventTmp->hours, eventTmp->minutes,
+                                                                        eventTmp->durationHours, eventTmp->durationMinutes);
         fclose(eventDatabaseFile);
-        printf("===== ================================ ==================== ================================ =========== =====\n");
+        printf("===== ================================ ==================== ================================ =========== ===== =========\n");
     }
     else
         printf("ERROR! Can't open 'eventDatabase.dat' file!\n");

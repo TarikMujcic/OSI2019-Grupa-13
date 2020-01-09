@@ -55,17 +55,8 @@ void adminMain()
             if(option == 4)
             {
                 char newCategory[21];
-                FILE* categoriesFile;
                 printf("\nName of category: "); getchar(); gets(newCategory);
-                if (( categoriesFile = fopen("eventCategory.txt", "a+")) != NULL)
-                {
-                    if(searchCategFile(categoriesFile, newCategory) == 0)
-                        placeCategory(categoriesFile, newCategory);
-                    else
-                        printf("A category with the same name already exists!\n");
-                    system("pause");
-                    fclose(categoriesFile);
-                }
+                addNewCategory(newCategory);
             }
             ///////////-----------------------------------  D E L E T E    C A T E G O R Y  -----------------------------------------------------------
             else if(option == 5)
