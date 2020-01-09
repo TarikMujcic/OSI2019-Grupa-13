@@ -4,25 +4,25 @@
 
 #include <stdio.h>
 
-typedef struct event              //if you have a better idea, feel free to change this
+typedef struct event
 {
     int  year,month,day,
          hours,minutes;
-    char id[6],
-         name[32],
-         description[200],
+    char name[32],
+         id[6],
          location[32],
+         description[200],
          category[20];
 }
 EVENT;
 
-typedef struct index
+typedef struct index            //struct that we use when optimizing updateEvent and deleteEvent
 {
     int address;
     char idNum[6];
 }INDEX;
 
-typedef struct question
+typedef struct question         //struct that we use in quiz for questions
 {
     int correctAnswer;
     char quizQuestion[100],
@@ -31,7 +31,7 @@ typedef struct question
          answer3[25];
 } QUESTION;
 
-int eventIdSearch(char *);          //function that checks whether the event exists or not
+int eventIdSearch(char *);        //function that checks whether the event exists or not
 int createNewEvent();             //function for creation of events
 void readNewEvent(EVENT *,int);   //function for getting info about new event
 int updateEvent();                //function for updating event info

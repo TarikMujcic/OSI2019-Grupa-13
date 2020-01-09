@@ -345,7 +345,7 @@
 
 1578521358 source:c:\users\danil\onedrive\documents\osiproject\quizclone\where2app\usermainfunctions.c
 
-1578588307 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmain.c
+1578593912 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmain.c
 	"adminMainFunctions.h"
 	"eventFunctions.h"
 	"gui.h"
@@ -360,7 +360,7 @@
 	<stdio.h>
 	<windows.h>
 
-1578589086 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.h
+1578593478 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.h
 	<stdio.h>
 
 1578581852 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmainfunctions.c
@@ -369,7 +369,7 @@
 
 1578578084 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\userinputvalidation.h
 
-1578590279 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.c
+1578593859 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.c
 	"eventFunctions.h"
 	"adminMainFunctions.h"
 

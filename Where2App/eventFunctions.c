@@ -34,7 +34,7 @@ void readNewEvent(EVENT *event,int control)         //control == 1 for new event
     char categoryArray[20][20]= {},categoryHelp[20];
     if((categoryFile=fopen("eventCategory.txt","r"))!=NULL)
     {
-        while(fscanf(categoryFile,"%s",categoryHelp)!=EOF)
+        while(fscanf(categoryFile,"%[^\n]\n",categoryHelp)!=EOF)
         {
             strcpy(categoryArray[count],categoryHelp);
             count++;
@@ -151,27 +151,28 @@ void deleteEvent(char *eventID)
 
 int searchCategFile(FILE* categoriesFile, char* category)
 {
-    char* temp = (char*)calloc(1, sizeof(char));
-    while(fscanf(categoriesFile, "%s \n", temp) != EOF)
-        if(strcmp(category, temp) == 0) return 1;
+    char temp[21];
+    while(fscanf(categoriesFile, "%[^\n]\n", temp) != EOF)
+        if(strcmp(category, temp) == 0)
+            return 1;
     return 0;
 }
 
 void placeCategory(FILE* categoriesFile, char* category)
 {
-    fprintf(categoriesFile, "%s \n", category);
-    printf("\nThe category %s has been created.\n", category);
+    fprintf(categoriesFile, "%s\n", category);
+    printf("\nThe category '%s' has been created.\n", category);
 }
 
 void printCategories()
 {
     FILE* categoriesFile = NULL;
     char tmpString[21];
-    if((categoriesFile = fopen("Categories.txt", "r")) != NULL)
+    if((categoriesFile = fopen("eventCategory.txt", "r")) != NULL)
     {
-        printf("Existing categories: \n");
-        while(fscanf(categoriesFile, "%s \n", tmpString) != EOF)
-            printf("%s \n", tmpString);
+        printf("Existing categories:\n");
+        while(fscanf(categoriesFile, "%[^\n]\n", tmpString) != EOF)
+            printf("%s\n", tmpString);
         fclose(categoriesFile);
     }
 
@@ -183,34 +184,34 @@ void deleteCategory(char* category)
          *tmpFile = NULL;
     char tmpString[21];
     int finder = 0;                                                 //variable which we use to confirm if we find matching category in file
-    if((categoriesFile = fopen("Categories.txt", "r")) != NULL)
+    if((categoriesFile = fopen("eventCategory.txt", "r")) != NULL)
     {                                                               /*tmpFile where we place all categories that are not
                                                                       matched with the category which needs to be deleted*/
         if((tmpFile = fopen("tmpFile.txt", "w")) != NULL)
         {
-            while(fscanf(categoriesFile,"%s \n", tmpString) != EOF)
+            while(fscanf(categoriesFile,"%[^\n]\n", tmpString) != EOF)
             {
                 if(strcmp(tmpString, category) != 0)
-                    fprintf(tmpFile, "%s \n", tmpString);
+                    fprintf(tmpFile, "%s\n", tmpString);
                 else finder++;
             }
             if(!finder)
-                return printf("\nNo matching category has been found!");
+                return printf("\nNo matching category has been found!\n");
             fclose(tmpFile);
         }
         fclose(categoriesFile);
     }
     if((tmpFile = fopen("tmpFile.txt", "r")) != NULL)
     {
-        if((categoriesFile = fopen("Categories.txt", "w")) != NULL)
+        if((categoriesFile = fopen("eventCategory.txt", "w")) != NULL)
         {
-            while(fscanf(tmpFile, "%s \n", tmpString) != EOF)
-                fprintf(categoriesFile, "%s \n", tmpString);
+            while(fscanf(tmpFile, "%[^\n]\n", tmpString) != EOF)
+                fprintf(categoriesFile, "%s\n", tmpString);
             fclose(categoriesFile);
         }
         fclose(tmpFile);
     }
-    printf("\nThe category '%s' has been sucessfully removed!", category);
+    printf("\nThe category '%s' has been sucessfully removed!\n", category);
 }
 
 

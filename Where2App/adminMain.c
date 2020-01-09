@@ -72,9 +72,9 @@ void adminMain()
             {
                 char category[21];
                 printCategories();
-                printf("\nName of category: ");
-                scanf("%s", category);
+                printf("\nName of category: "); getchar(); gets(category);
                 deleteCategory(category);
+                system("pause");
             }
             ///////////------------------------------------  C O N F I G U R E    A   Q U I Z  --------------------------------------------------------
             else if(option == 6)
