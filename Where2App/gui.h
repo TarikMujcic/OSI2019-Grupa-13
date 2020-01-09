@@ -12,6 +12,8 @@ void welcomeScreenGui();
 
 void printUserOptions();        //function to print out options for which part of app will user use
 
+void printEventsInFormat();     //function to print out events from file in format
+
 ///For adminMain
 
 void printLogRegOptions();      //help function for logRegForm() (from adminMainFunctions) - to print out options

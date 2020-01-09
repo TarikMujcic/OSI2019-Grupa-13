@@ -2,6 +2,7 @@
 something to the console in certain format*/
 
 #include "gui.h"
+#include "eventFunctions.h"
 
 void printWelcomeScreen()
 {
@@ -48,6 +49,31 @@ void printUserOptions()
     printf("\n");
 }
 
+void printEventsInFormat()
+{
+    FILE *eventDatabaseFile;
+    EVENT *eventTmp = (EVENT*)calloc(1,sizeof(EVENT));
+    if((eventDatabaseFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        printf("EVENTS:\n");
+        printf("===== ================================ ==================== ================================ =========== =====\n");
+        printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE        TIME \n");
+        printf("===== ================================ ==================== ================================ =========== =====\n");
+        while(fread(eventTmp, sizeof(EVENT), 1, eventDatabaseFile))
+        {
+            printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d\n", eventTmp->id, eventTmp->name, eventTmp->category, eventTmp->location,
+                                                                        eventTmp->day, eventTmp->month, eventTmp->year,
+                                                                        eventTmp->hours, eventTmp->minutes);
+            printf("      DESCRIPTION:\n      %s\n", eventTmp->description);
+        printf("----- -------------------------------- -------------------- -------------------------------- ----------- -----\n");
+        }
+        fclose(eventDatabaseFile);
+        printf("===== ================================ ==================== ================================ =========== =====\n");
+    }
+    else
+        printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
+}
+
 
 ///For adminMain//////////////////////////////////////////////////////////
 
@@ -79,7 +105,8 @@ void printOptionsAdminPart()
     printf("||        3) DELETE AN EVENT    -> Type in '3'          ||\n");
     printf("||        4) ADD NEW CATEGORY   -> Type in '4'          ||\n");
     printf("||        5) DELETE A CATEGORY  -> Type in '5'          ||\n");
-    printf("||        6) EXIT               -> Type in '6'          ||\n");
+    printf("||        6) CONFIGURE A QUIZ   -> Type in '6'          ||\n");
+    printf("||        7) EXIT               -> Type in '7'          ||\n");
     printf("||                                                      ||\n");
     printf("||                                                      ||\n");
     printf("==========================================================\n");

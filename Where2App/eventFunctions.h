@@ -2,23 +2,27 @@
 #define EVENTFUNCTIONS_H_INCLUDED
 /*Header file for event handling and necessary types*/
 
+#include <stdio.h>
 
 typedef struct event              //if you have a better idea, feel free to change this
 {
-    int eventID,year,month,day,hours,minutes;
-    char eventName[32],
-         eventDescription[200],
-         eventLocation[32],
-         eventCategory[20];
+    int  year,month,day,
+         hours,minutes;
+    char id[6],
+         name[32],
+         description[200],
+         location[32],
+         category[20];
 }
 EVENT;
 
 typedef struct index
 {
-    int idNum,address;
+    int address;
+    char idNum[6];
 }INDEX;
 
-typedef struct
+typedef struct question
 {
     int correctAnswer;
     char quizQuestion[100],
@@ -27,13 +31,22 @@ typedef struct
          answer3[25];
 } QUESTION;
 
-int eventIdSearch(int );          //function that checks whether the event exists or not
+int eventIdSearch(char *);          //function that checks whether the event exists or not
 int createNewEvent();             //function for creation of events
 void readNewEvent(EVENT *,int);   //function for getting info about new event
 int updateEvent();                //function for updating event info
-void deleteEvent(int eventID);    //function for deleting event
-void playQuiz();                  //function for playing a quiz game
-void configureQuiz();             //function for quiz configuration
+void deleteEvent(char *eventID);  //function for deleting event
+
+int  searchCategFile(FILE* categoriesFile, char* category);                 //function that searches for a category within a file
+void placeCategory(FILE* categoriesFile, char* category);                   //function that places a new category in a file
+void printCategories();                                                     //function that prints out existing categories
+void deleteCategory(char* category);                                        //function that deletes selected category
+
+
+
+
+
+
 
 
 

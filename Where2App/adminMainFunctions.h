@@ -5,7 +5,9 @@ administrator part of the application*/
 
 #include <stdio.h>
 #include <windows.h>                 //for sleep function
+
 #include "gui.h"
+#include "eventFunctions.h"
 
 typedef struct admin
 {
@@ -18,11 +20,6 @@ void registration();                 //help function for logRegForm() - to make 
 void login();                        //help function for logRegForm() - to login into existing account
 int logRegForm();
 
-int searchCategFile(FILE* categoriesFile, char* category);                  //function that searches for a category within a file
-void placeCategory(FILE* categoriesFile, char* category);                   //function that places a new category in a file
-void printCategories();                                                     //function that prints out existing categories
-void deleteCategory(char* category);                                        //function that deletes selected category
-
-
+void configureQuiz();             //function for quiz configuration
 
 #endif // ADMINMAINFUNCTIONS_H_INCLUDED

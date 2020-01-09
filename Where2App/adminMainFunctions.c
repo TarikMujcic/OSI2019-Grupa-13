@@ -72,8 +72,6 @@ void registration()
 
 void login()
 {
-
-
         FILE *databaseAdminFile;
         ADMIN loginAdminHelp,                    //help variable to place the username and password that user types in
               adminTmp;                          //help variable to place accounts from database and to compare it to the loginAdminHelp variable
@@ -159,69 +157,43 @@ int logRegForm()
 
 
 
-int searchCategFile(FILE* categoriesFile, char* category)
+void configureQuiz()
 {
-    char* temp = (char*)calloc(1, sizeof(char));
-    while(fscanf(categoriesFile, "%s \n", temp) != EOF)
-        if(strcmp(category, temp) == 0) return 1;
-    return 0;
-}
-
-void placeCategory(FILE* categoriesFile, char* category)
-{
-    fprintf(categoriesFile, "%s \n", category);
-    printf("\nThe category %s has been created.\n", category);
-}
-
-void printCategories()
-{
-    FILE* categoriesFile = NULL;
-    char tmpString[21];
-    if((categoriesFile = fopen("Categories.txt", "r")) != NULL)
+    FILE *quizFile=NULL;
+    int n=10,i;
+    char optionHelp[20];
+    QUESTION *quiz=(QUESTION*)calloc(n,sizeof(QUESTION));
+    for(i=0; i<n; i++)
     {
-        printf("Existing categories: \n");
-        while(fscanf(categoriesFile, "%s \n", tmpString) != EOF)
-            printf("%s \n", tmpString);
-        fclose(categoriesFile);
-    }
-
-}
-
-void deleteCategory(char* category)
-{
-    FILE *categoriesFile = NULL,
-         *tmpFile = NULL;
-    char tmpString[21];
-    int finder = 0;                                                 //variable which we use to confirm if we find matching category in file
-    if((categoriesFile = fopen("Categories.txt", "r")) != NULL)
-    {                                                               /*tmpFile where we place all categories that are not
-                                                                      matched with the category which needs to be deleted*/
-        if((tmpFile = fopen("tmpFile.txt", "w")) != NULL)
+        printf("Enter question no. %d: ",i+1);  getchar(); gets(quiz[i].quizQuestion);
+        printf(" Enter the first answer: ");  gets(quiz[i].answer1);
+        printf(" Enter the second answer: "); gets(quiz[i].answer2);
+        printf(" Enter the third answer: ");  gets(quiz[i].answer3);
+        int wrongOption = 0;        //variable to use for help to print out Error if user types in wrong option
+        do
         {
-            while(fscanf(categoriesFile,"%s \n", tmpString) != EOF)
+            if(wrongOption)
             {
-                if(strcmp(tmpString, category) != 0)
-                    fprintf(tmpFile, "%s \n", tmpString);
-                else finder++;
+                printf("That is not a valid answer! Try again! \n\n");
+                gets(optionHelp);
             }
-            if(!finder)
-                return printf("\nNo matching category has been found!");
-            fclose(tmpFile);
+            printf(" WHICH ANSWER IS CORRECT:");
+            scanf("%d",&quiz[i].correctAnswer);
+            wrongOption = 1;
         }
-        fclose(categoriesFile);
+        while(quiz[i].correctAnswer < 1 || quiz[i].correctAnswer > 3);
     }
-    if((tmpFile = fopen("tmpFile.txt", "r")) != NULL)
+    if((quizFile=fopen("Quiz.dat","wb"))!=NULL)
     {
-        if((categoriesFile = fopen("Categories.txt", "w")) != NULL)
-        {
-            while(fscanf(tmpFile, "%s \n", tmpString) != EOF)
-                fprintf(categoriesFile, "%s \n", tmpString);
-            fclose(categoriesFile);
-        }
-        fclose(tmpFile);
+        for(i=0; i<n; i++)
+            fwrite(&quiz[i],sizeof(QUESTION),1,quizFile);
+        fclose(quizFile);
     }
-    printf("\nThe category '%s' has been sucessfully removed!", category);
+    else
+    {
+        printf("\nError! Couldn't open 'Quiz.dat'!\n");
+        return;
+    }
+    free(quiz);
+    printf("\n\nYOUR QUIZ WAS SUCCESSFULLY CREATED!\n");
 }
-
-
-

@@ -3,6 +3,7 @@
 
 #include "adminMainFunctions.h"
 #include "eventFunctions.h"
+#include "gui.h"
 
 void adminMain()
 {
@@ -25,26 +26,30 @@ void adminMain()
                 printf("Your choice: "); scanf("%d",&option);
                 wrongOption = 1;
             }
-            while(option < 1 || option > 6);
+            while(option < 1 || option > 7);
 
             ///////////---------------------------------------   C R E A T E    E V E N T  ------------------------------------------------------------
             if(option == 1)
             {
                createNewEvent();
+               system("pause");
             }
             ///////////---------------------------------------   U P D A T E    E V E N T  ------------------------------------------------------------
             else if(option == 2)
             {
-
+                printEventsInFormat();
+                updateEvent();
+                system("pause");
             }
             ///////////---------------------------------------   D E L E T E   E V E N T  -------------------------------------------------------------
             else if(option == 3)
             {
-                //add function which prints out events so the user can see event ID's
-                int eventID;
+                printEventsInFormat();
+                char eventID[6];
                 printf("Event ID: ");
-                scanf("%d", &eventID);
+                scanf("%s", eventID);
                 deleteEvent(eventID);
+                system("pause");
             }
             ///////////---------------------------------------  A D D    C A T E G O R Y  -------------------------------------------------------------
             if(option == 4)
@@ -71,8 +76,14 @@ void adminMain()
                 scanf("%s", category);
                 deleteCategory(category);
             }
-            ///////////---------------------------------------------------   E X I T   ----------------------------------------------------------------
+            ///////////------------------------------------  C O N F I G U R E    A   Q U I Z  --------------------------------------------------------
             else if(option == 6)
+            {
+                configureQuiz();
+                system("pause");
+            }
+            ///////////---------------------------------------------------   E X I T   ----------------------------------------------------------------
+            else if(option == 7)
             {
                 option = -1;
             }

@@ -1,6 +1,9 @@
 /*C file for #3 option in FIRST(MAIN) DO...WHILE LOOP
 (for unregistered User part of the app)*/
 
+#include "gui.h"
+#include "eventFunctions.h"
+
 void userMain()
 {
     int option;                             //variable to take the number for users option
@@ -25,7 +28,8 @@ void userMain()
         ///////////---------------------------------------   V I E W   E V E N T S ------------------------------------------------------------
         if(option == 1)
         {
-
+            printEventsInFormat();
+            system("pause");
         }
         ///////////---------------------------------------   P L A Y    Q U I Z     -----------------------------------------------------------
         else if(option == 2)

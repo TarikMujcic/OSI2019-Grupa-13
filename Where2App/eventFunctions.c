@@ -1,18 +1,18 @@
 /*Header file for event handling functions*/
-///test for smartGit DT
+
 #include "eventFunctions.h"
 #include "adminMainFunctions.h"
 
-int eventIdSearch(int index)
+int eventIdSearch(char *index)
 {
     FILE *fin;
     INDEX tmpIndex;
     int found=0,address=0;                    //found - variable that stops the loop if index was found
     if((fin=fopen("EventLookUp.txt","r"))!=NULL)
     {
-        while(fscanf(fin,"%d %d",&tmpIndex.idNum,&tmpIndex.address)!=EOF && !found)
+        while(fscanf(fin,"%s %d",tmpIndex.idNum,&tmpIndex.address)!=EOF && !found)
         {
-            if(tmpIndex.idNum==index)
+            if(!strcmp(tmpIndex.idNum, index))
             {
                 found=1;
                 address=tmpIndex.address;     //save address of the event
@@ -21,13 +21,13 @@ int eventIdSearch(int index)
         if(found==1)        //event already exists - return it's address; otherwise - return 0
             return address;
         else
-            return 0;
+            return -1;
     }
     else
         return printf("ERROR! Couldn't open 'EventLookUp.txt' ...\n"),0;
 }
 
-void readNewEvent(EVENT *event,int control)
+void readNewEvent(EVENT *event,int control)         //control == 1 for new event, control == 0 for updating old event
 {
     int count=0,i,option=0;
     FILE *categoryFile;
@@ -43,19 +43,21 @@ void readNewEvent(EVENT *event,int control)
     }
     else
     {
-        printf("Error! Can't open 'eventCategory.txt' file!\n");
+        printf("ERROR! Can't open 'eventCategory.txt' file!\n");
         return;
     }
-    printf("PLEASE ENTER INFORMATION ABOUT YOUR EVENT: \n");
-    printf("  Name of event:     "); getchar(); gets(event->eventName);                   //ovaj dio je problematican; tu nastaje greska
-    if(control==1)
+    char accOptionHelp[10];
+    control ? gets(accOptionHelp) : control;
+    printf("PLEASE ENTER INFORMATION ABOUT YOUR EVENT:\n");
+    printf("  Name of event:       "); gets(event->name);
+    if(control == 1)
     {
-        printf("  Event ID number:   "); scanf("%d",&event->eventID);
+        printf("  Event ID [xxxxx]:    "); scanf("%s", event->id);
     }
-    printf("  Location:          "); getchar(); gets(event->eventLocation);
-    printf("  Event description: "); fgets(event->eventDescription,199,stdin);
-    printf("  Date (dd.mm.yy.):  "); scanf("%d.%d.%d.",&event->day,&event->month,&event->year);
-    printf("  Time (hh:mm):      "); scanf("%d:%d",&event->hours,&event->minutes);
+    printf("  Location:            "); control ? getchar() : control ; gets(event->location);
+    printf("  Event description:   "); gets(event->description);
+    printf("  Date [dd.mm.yy.]:    "); scanf("%d.%d.%d.",&event->day, &event->month, &event->year);
+    printf("  Time [hh:mm]:        "); scanf("%d:%d",&event->hours, &event->minutes);
     if(count>0)
     {
         printf("  Choose event category:\n");
@@ -74,7 +76,7 @@ void readNewEvent(EVENT *event,int control)
             wrongOption = 1;
         }
         while(option < 1 || option > count);
-        strcpy(event->eventCategory, categoryArray[option - 1]);
+        strcpy(event->category, categoryArray[option - 1]);
     }
 }
 
@@ -84,48 +86,49 @@ int createNewEvent()
     FILE *eventDatabaseFile,*eventLookUp;
     EVENT newEvent;
     INDEX eventIndex;
-    readNewEvent(&newEvent,1);                   //second argument is 1 because we're reading info about a new event
-    if(eventIdSearch(newEvent.eventID)==0)       //if the event can be created, add it to the database
+    readNewEvent(&newEvent, 1);                   //second argument is 1 because we're reading info about a new event
+    if(eventIdSearch(newEvent.id) == -1)             //if the event can be created, add it to the database
     {
         //other criteria for this condition will be added later
 
         if((eventDatabaseFile=fopen("eventDatabase.dat","ab"))!=NULL)
         {
-            eventIndex.address=ftell(eventDatabaseFile);
+            int confirmSuccess = fseek(eventDatabaseFile, 0, 2);        //variable to hold return value of fseek (0 if positioning is successful)
+            eventIndex.address = ftell(eventDatabaseFile);              //holds the size of the current file
             fwrite(&newEvent,sizeof(EVENT),1,eventDatabaseFile);
-            eventIndex.idNum=newEvent.eventID;
+            strcpy(eventIndex.idNum, newEvent.id);
             fclose(eventDatabaseFile);
         }
         else
             printf("Error! Couldn't open event database!\n\n");
         if((eventLookUp=fopen("EventLookUp.txt","a"))!=NULL)
         {
-            fprintf(eventLookUp,"%d %d\n",eventIndex.idNum,eventIndex.address);
+            fprintf(eventLookUp,"%s %d\n",eventIndex.idNum, eventIndex.address);
             fclose(eventLookUp);
         }
         else
             printf("Error! Couldn't open event look-up file!\n\n");
         printf("\nYOUR EVENT WAS SUCCESSFULLY CREATED!\n\n");
-        system("pause");
         return 1;
     }
     else
     {
-        return printf("THAT EVENT CAN'T BE CREATED! PLEASE TRY AGAIN.\n\n");
-        system("pause");
+        return printf("ERROR! That event can't be created!\nCheck if the location and ID are available!\n\n");
         return 0;
     }
 }
+
 
 int updateEvent()                  //return value: 1-successful update, 0-event doesn't exist
 {
     FILE *eventDatabaseFile;
     EVENT updatedEvent;
-    int address,eventID;
-    printf("Enter ID of the event you want to update:");
-    scanf("%d",&eventID);
-    if((address=eventIdSearch(eventID))!=0)
+    int address;
+    char eventID[6];
+    printf("Enter ID of the event you want to update:"); getchar(); gets(eventID);
+    if((address = eventIdSearch(eventID)) != -1)      //there is such event in the database
     {
+        strcpy(updatedEvent.id, eventID);
         readNewEvent(&updatedEvent,0);        //set control to 0 - function will read new info about an existing event
         if((eventDatabaseFile=fopen("eventDatabase.dat","r+b"))!=NULL)
         {
@@ -141,114 +144,76 @@ int updateEvent()                  //return value: 1-successful update, 0-event 
         return printf("\nError! You can't update events that don't exist. Make sure you have a correct ID and try again!\n"),0;
 }
 
-void deleteEvent(int eventID)
+void deleteEvent(char *eventID)
 {
-    FILE *eventDatabaseFile;
-    EVENT emptyEvent = {0};
-    int adress;                                 //variable to store adress from from eventLookUp.txt
-    if((adress = eventIdSearch(eventID)) != 0)
-    {
-        readNewEvent(&emptyEvent,0);
-        if((eventDatabaseFile=fopen("eventDatabase.dat","r+b"))!=NULL)
-        {
-            fseek(eventDatabaseFile,adress,SEEK_SET);
-            fwrite(&emptyEvent,sizeof(EVENT),1,eventDatabaseFile);
-            fclose(eventDatabaseFile);
-            return printf("\nEvent was successfully deleted!\n"),1;
-        }
-        else
-            return printf("\nError! Couldn't open file called 'eventDatabase.dat'!"),0;
-    }
-    else
-        return printf("No event with a matching ID has been found!\n");
+    ///DO THIS FUNCTION JUST LIKE YOU DID deleteCategory !
 }
 
-
-void configureQuiz()
+int searchCategFile(FILE* categoriesFile, char* category)
 {
-    FILE *quizFile=NULL;
-    int n=10,i;
-    char optionHelp[20];
-    QUESTION *quiz=(QUESTION*)calloc(n,sizeof(QUESTION));
-    for(i=0; i<n; i++)
+    char* temp = (char*)calloc(1, sizeof(char));
+    while(fscanf(categoriesFile, "%s \n", temp) != EOF)
+        if(strcmp(category, temp) == 0) return 1;
+    return 0;
+}
+
+void placeCategory(FILE* categoriesFile, char* category)
+{
+    fprintf(categoriesFile, "%s \n", category);
+    printf("\nThe category %s has been created.\n", category);
+}
+
+void printCategories()
+{
+    FILE* categoriesFile = NULL;
+    char tmpString[21];
+    if((categoriesFile = fopen("Categories.txt", "r")) != NULL)
     {
-        printf("Enter question no. %d: ",i+1);  getchar(); gets(quiz[i].quizQuestion);
-        printf(" Enter the first answer: ");  gets(quiz[i].answer1);
-        printf(" Enter the second answer: "); gets(quiz[i].answer2);
-        printf(" Enter the third answer: ");  gets(quiz[i].answer3);
-        int wrongOption = 0;        //variable to use for help to print out Error if user types in wrong option
-        do
+        printf("Existing categories: \n");
+        while(fscanf(categoriesFile, "%s \n", tmpString) != EOF)
+            printf("%s \n", tmpString);
+        fclose(categoriesFile);
+    }
+
+}
+
+void deleteCategory(char* category)
+{
+    FILE *categoriesFile = NULL,
+         *tmpFile = NULL;
+    char tmpString[21];
+    int finder = 0;                                                 //variable which we use to confirm if we find matching category in file
+    if((categoriesFile = fopen("Categories.txt", "r")) != NULL)
+    {                                                               /*tmpFile where we place all categories that are not
+                                                                      matched with the category which needs to be deleted*/
+        if((tmpFile = fopen("tmpFile.txt", "w")) != NULL)
         {
-            if(wrongOption)
+            while(fscanf(categoriesFile,"%s \n", tmpString) != EOF)
             {
-                printf("That is not a valid answer! Try again! \n\n");
-                gets(optionHelp);
+                if(strcmp(tmpString, category) != 0)
+                    fprintf(tmpFile, "%s \n", tmpString);
+                else finder++;
             }
-            printf(" WHICH ANSWER IS CORRECT:");
-            scanf("%d",&quiz[i].correctAnswer);
-            wrongOption = 1;
+            if(!finder)
+                return printf("\nNo matching category has been found!");
+            fclose(tmpFile);
         }
-        while(quiz[i].correctAnswer < 1 || quiz[i].correctAnswer > 3);
+        fclose(categoriesFile);
     }
-    if((quizFile=fopen("Quiz.dat","wb"))!=NULL)
+    if((tmpFile = fopen("tmpFile.txt", "r")) != NULL)
     {
-        for(i=0; i<n; i++)
-            fwrite(&quiz[i],sizeof(QUESTION),1,quizFile);
-        fclose(quizFile);
-    }
-    else
-    {
-        printf("\nError! Couldn't open 'Quiz.dat'!\n");
-        return;
-    }
-    free(quiz);
-    printf("\n\nYOUR QUIZ WAS SUCCESSFULLY CREATED!\n");
-}
-
-
-void playQuiz()
-{
-    FILE *quizFile=NULL;
-    int score=0,i=0,n=10,answer[n];
-    char optionHelp[20];
-    QUESTION *quiz=(QUESTION*)calloc(n,sizeof(QUESTION)),tmp;
-    if((quizFile=fopen("Quiz.dat","rb"))!=NULL)
-    {
-        while(fread(&tmp,sizeof(QUESTION),1,quizFile))
-            quiz[i++]=tmp;
-        fclose(quizFile);
-    }
-    else
-    {
-        printf("\nError! Couldn't open 'Quiz.dat'. File moved or missing!\n");
-        return;
-    }
-    printf("===============================================\n");
-    for(i=0; i<n; i++)
-    {
-        printf("Question %d: %s\n",i+1,quiz[i].quizQuestion);
-        printf("    1) %s\n",quiz[i].answer1);
-        printf("    2) %s\n",quiz[i].answer2);
-        printf("    3) %s\n",quiz[i].answer3);
-        int wrongOption = 0;        //variable to use for help to print out Error if user types in wrong option
-        do
+        if((categoriesFile = fopen("Categories.txt", "w")) != NULL)
         {
-            if(wrongOption)
-            {
-                printf("That is not a valid answer! Try again! \n\n");
-                gets(optionHelp);
-            }
-            printf(" Choose your answer:");
-            scanf("%d",&answer[i]);
-            wrongOption = 1;
+            while(fscanf(tmpFile, "%s \n", tmpString) != EOF)
+                fprintf(categoriesFile, "%s \n", tmpString);
+            fclose(categoriesFile);
         }
-        while(answer[i]<1 || answer[i]>3);
-        if(answer[i]==quiz[i].correctAnswer)
-            score++;
+        fclose(tmpFile);
     }
-    printf("===============================================\n");
-    if(score==n)
-        printf("CONGRATULATIONS! ");
-    printf("Your score is: %d/%d",score,n);
-    free(quiz);
+    printf("\nThe category '%s' has been sucessfully removed!", category);
 }
+
+
+
+
+
