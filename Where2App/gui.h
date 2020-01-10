@@ -23,7 +23,8 @@ void printRegLoading();
 ///For userMain
 
 void printOptionsUserPart();    //function to print out options for regular users
-void printEventOptions();       //function to print out options for sorting... events
+void printEventOptions();       //function to print out options for events(sorting, filtering, commenting)
+void printSortOptions();        //function to print out options for sorting
 
 ///For exitMain
 void printGoodbye();            //function to print out goodbye message on the screen

@@ -3,6 +3,7 @@
 
 #include "gui.h"
 #include "eventFunctions.h"
+#include "userMainFunctions.h"
 
 void userMain()
 {
@@ -49,7 +50,7 @@ void userMain()
                 }
                 while(optionView < 1 || optionView > 4);
 
-                ///IF optionView == 1 --> SEE EVENT DETAILS OR COMMENT
+                ///IF optionView == 1 --> SEE EVENT DETAILS OR COMMENT----------------------------------------
                 if (optionView == 1)
                 {
                     char eventID[6];
@@ -58,28 +59,50 @@ void userMain()
                     if((address = eventIdSearch(eventID)) != -1)      //there is such event in the database
                     {
                         printEventDetails(eventID);
-
                     }
                     else
                         printf("\nERROR! Event with such ID does not exist! Make sure you have a correct ID and try again!\n");
                     system("pause");
                 }
-                ///IF optionView == 2 --> SORT EVENTS
+                ///IF optionView == 2 --> SORT EVENTS-----------------------------------------------------------
                 else if(optionView == 2)
                 {
+                    printSortOptions();
+                    int wrongOption = 0;                //variable to use for help to print out Error if user types in wrong option
+                    int optionSort;
+                    do
+                    {
+                        if(wrongOption)
+                        {
+                            printf("That is not a valid option! Try again! \n\n");
+                            gets(optionHelp);
+                        }
+                        printf("Your choice: "); scanf("%d",&optionSort);
+                        wrongOption = 1;
+                    }
+                    while(optionSort < 1 || optionSort > 4);
+                    if(optionSort == 1)
+                        sortNameAtoZ(getArrFromFile(), getNumOfEventsFromFile());
+                    else if(optionSort == 2)
+                        sortNameZtoA(getArrFromFile(), getNumOfEventsFromFile());
+                    else if(optionSort == 3)
+                        sortDateTimeDesc(getArrFromFile(), getNumOfEventsFromFile());
+                    else if(optionSort == 4)
+                        sortDateTimeAsc(getArrFromFile(), getNumOfEventsFromFile());
+
 
                 }
-                ///IF optionView == 3 --> FILTER EVENTS
+                ///IF optionView == 3 --> FILTER EVENTS-----------------------------------------------------------------
                 else if(optionView == 3)
                 {
 
                 }
-                ///IF optionView == 4 --> EXIT
+                ///IF optionView == 4 --> EXIT-------------------------------------------------------------------------
                 else if(optionView == 4)
                 {
                     optionView = -1;
                 }
-
+                system("pause");
             }
             while(optionView != -1);
 

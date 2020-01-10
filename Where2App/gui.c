@@ -155,6 +155,13 @@ void printEventOptions()
     printf("\n");
 }
 
+void printSortOptions()
+{
+    printf("Sort by NAME ( A - Z )         -> Type in '1'\n");
+    printf("Sort by NAME ( Z - A )         -> Type in '2'\n");
+    printf("Sort by DATE&TIME (descending) -> Type in '3'\n");
+    printf("Sort by DATE&TIME (ascending)  -> Type in '4'\n");
+}
 
 ///For exitMain////////////////////////////////////////////////////////////
 void printGoodbye()

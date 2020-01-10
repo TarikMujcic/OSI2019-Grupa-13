@@ -1,6 +1,7 @@
 #include "userMainFunctions.h"
 
 
+
 void printEventDetails(char *index)
 {
     FILE *eventDatabaseFile,
@@ -21,6 +22,7 @@ void printEventDetails(char *index)
                                                                                         eventTmp->day, eventTmp->month, eventTmp->year,
                                                                                         eventTmp->hours, eventTmp->minutes,
                                                                                         eventTmp->durationHours, eventTmp->durationMinutes);
+                printf("===== ================================ ==================== ================================ =========== ===== =========\n");
                 printf("DESCRIPTION: %s\n", eventTmp->description);
 
                 /// PRINTING COMMENTS COMMENTS ---------------------------------------------------
@@ -36,6 +38,7 @@ void printEventDetails(char *index)
                 }
                 else
                     printf("There are no comments about this event!\n");
+                printf("===== ================================ ==================== ================================ =========== ===== =========\n");
                 ///For adding comments
                 printf("Do you want to add a comment:\n");
                 printf("    1) YES   -> Type in '1'\n");
@@ -75,11 +78,146 @@ void printEventDetails(char *index)
         }
         fclose(eventDatabaseFile);
         free(eventTmp);
-        printf("===== ================================ ==================== ================================ =========== ===== =========\n");
     }
     else
         printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
 }
+
+///SORT FUNCTIONS
+
+int getNumOfEventsFromFile()    //just for counting the number of elements
+{
+    FILE *eventDatabaseFile;
+    int counter = 0;
+    EVENT eventTmp;
+    if((eventDatabaseFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        while(fread(&eventTmp, 1, sizeof(EVENT), eventDatabaseFile))
+            counter++;
+        fclose(eventDatabaseFile);
+        return counter;
+    }
+    else
+        printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
+}
+
+EVENT* getArrFromFile()
+{
+    FILE *eventDatabaseFile;
+    int numOfElements = getNumOfEventsFromFile();
+    int i = 0; //for while loop
+    EVENT *arrEvents = (EVENT *)calloc(numOfElements, sizeof(EVENT));
+    if((eventDatabaseFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        while(fread(&arrEvents[i++], 1, sizeof(EVENT), eventDatabaseFile));
+
+        fclose(eventDatabaseFile);
+        return arrEvents;       //return the complete array
+    }
+    else
+        printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
+}
+
+
+int compareName(const void *arg1, const void *arg2)
+{
+    return strcmp( ((EVENT*)arg1)->name, ((EVENT *)arg2)->name );
+}
+int compareDateTime(const void *arg1, const void *arg2)
+{
+    EVENT a = *((EVENT *)arg1),
+          b = *((EVENT *)arg2);
+    if(a.year > b.year ||
+       a.year == b.year && a.month > b.month ||
+       a.year == b.year && a.month == b.month && a.day > b.day ||
+       a.year == b.year && a.month == b.month && a.day == b.day && a.hours > a.minutes ||
+       a.year == b.year && a.month == b.month && a.day == b.day && a.hours == a.minutes && a.minutes > b.minutes)
+            return 1;
+    else
+        return -1;
+}
+
+
+void sortNameAtoZ(EVENT* arr, int numOfElements)
+{
+    qsort(arr, numOfElements, sizeof(EVENT), compareName);
+    printf("SORTED BY NAME (DESCENDING) EVENTS:\n");
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+    printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+    for(int i = 0; i < numOfElements; i++)
+    {
+        printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", arr[i].id, arr[i].name, arr[i].category, arr[i].location,
+                                                                        arr[i].day, arr[i].month, arr[i].year,
+                                                                        arr[i].hours, arr[i].minutes,
+                                                                        arr[i].durationHours, arr[i].durationMinutes);
+    }
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+
+
+}
+
+void sortNameZtoA(EVENT* arr, int numOfElements)
+{
+    qsort(arr, numOfElements, sizeof(EVENT), compareName);
+    printf("SORTED BY NAME (DESCENDING) EVENTS:\n");
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+    printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+    for(int i = numOfElements - 1; i >= 0; i--)
+    {
+        printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", arr[i].id, arr[i].name, arr[i].category, arr[i].location,
+                                                                        arr[i].day, arr[i].month, arr[i].year,
+                                                                        arr[i].hours, arr[i].minutes,
+                                                                        arr[i].durationHours, arr[i].durationMinutes);
+    }
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+}
+
+void sortDateTimeDesc(EVENT* arr, int numOfElements)
+{
+    qsort(arr, numOfElements, sizeof(EVENT), compareDateTime);
+    printf("SORTED BY NAME (DESCENDING) EVENTS:\n");
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+    printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+    for(int i = 0; i < numOfElements; i++)
+    {
+        printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", arr[i].id, arr[i].name, arr[i].category, arr[i].location,
+                                                                        arr[i].day, arr[i].month, arr[i].year,
+                                                                        arr[i].hours, arr[i].minutes,
+                                                                        arr[i].durationHours, arr[i].durationMinutes);
+    }
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+
+}
+
+void sortDateTimeAsc(EVENT* arr, int numOfElements)
+{
+    qsort(arr, numOfElements, sizeof(EVENT), compareDateTime);
+    printf("SORTED BY NAME (DESCENDING) EVENTS:\n");
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+    printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+    for(int i = numOfElements - 1; i >= 0; i--)
+    {
+        printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", arr[i].id, arr[i].name, arr[i].category, arr[i].location,
+                                                                        arr[i].day, arr[i].month, arr[i].year,
+                                                                        arr[i].hours, arr[i].minutes,
+                                                                        arr[i].durationHours, arr[i].durationMinutes);
+    }
+    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+}
+
+
+
+
+
+
+
+
+
+
 
 void playQuiz()
 {

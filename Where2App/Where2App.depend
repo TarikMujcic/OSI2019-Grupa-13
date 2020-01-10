@@ -358,7 +358,7 @@
 	"gui.h"
 	"eventFunctions.h"
 
-1578663357 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.h
+1578673168 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.h
 	<stdio.h>
 	<windows.h>
 
@@ -378,7 +378,7 @@
 1578578084 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\exitmain.c
 	"gui.h"
 
-1578667698 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.c
+1578677097 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.c
 	"gui.h"
 	"eventFunctions.h"
 
@@ -435,14 +435,15 @@
 	"userInputValidation.h"
 	"adminMainFunctions.h"
 
-1578671005 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermain.c
+1578677196 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermain.c
 	"gui.h"
 	"eventFunctions.h"
-
-1578671284 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermainfunctions.c
 	"userMainFunctions.h"
 
-1578666127 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermainfunctions.h
+1578677405 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermainfunctions.c
+	"userMainFunctions.h"
+
+1578677206 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermainfunctions.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
