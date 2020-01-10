@@ -32,12 +32,12 @@ typedef struct question         //struct that we use in quiz for questions
          answer3[25];
 } QUESTION;
 
-int eventIdSearch(char *index);        //function that checks whether the event with that ID already exists or not
-int isAvailable(EVENT* event);           //function that checks whether the location is available at that time
-int createNewEvent();             //function for creation of events
-void readNewEvent(EVENT *newEvent, int control);   //function for getting info about new event
-int updateEvent();                //function for updating event info
-void deleteEvent(char *eventID);  //function for deleting event
+int eventIdSearch(char *index);                     //function that checks whether the event with that ID already exists or not
+int isAvailable(EVENT* event);                      //function that checks whether the location is available at that time
+int createNewEvent();                               //function for creation of events
+void readNewEvent(EVENT *newEvent, int control);    //function for getting info about new event
+int updateEvent();                                  //function for updating event info
+void deleteEvent(char *eventID);                    //function for deleting event
 
 int  searchCategFile(FILE* categoriesFile, char* category);                 //function that searches for a category within a file
 void writeCategory(FILE* categoriesFile, char* category);                   //help function for addNewCategory() that writes a new category in a file

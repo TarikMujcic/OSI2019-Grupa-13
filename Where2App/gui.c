@@ -57,7 +57,7 @@ void printEventsInFormat()
     {
         printf("EVENTS:\n");
         printf("===== ================================ ==================== ================================ =========== ===== =========\n");
-        printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE        TIME DURATION\n");
+        printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
         printf("===== ================================ ==================== ================================ =========== ===== =========\n");
         while(fread(eventTmp, sizeof(EVENT), 1, eventDatabaseFile))
             printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", eventTmp->id, eventTmp->name, eventTmp->category, eventTmp->location,
@@ -65,6 +65,7 @@ void printEventsInFormat()
                                                                         eventTmp->hours, eventTmp->minutes,
                                                                         eventTmp->durationHours, eventTmp->durationMinutes);
         fclose(eventDatabaseFile);
+        free(eventTmp);
         printf("===== ================================ ==================== ================================ =========== ===== =========\n");
     }
     else
@@ -132,6 +133,22 @@ void printOptionsUserPart()
     printf("||           1) VIEW EVENTS       -> Type in '1'        ||\n");
     printf("||           2) PLAY QUIZ         -> Type in '2'        ||\n");
     printf("||           3) EXIT              -> Type in '3'        ||\n");
+    printf("||                                                      ||\n");
+    printf("||                                                      ||\n");
+    printf("==========================================================\n");
+    printf("\n");
+}
+
+void printEventOptions()
+{
+    printf("==========================================================\n");
+    printf("||                                                      ||\n");
+    printf("||                                                      ||\n");
+    printf("||         CHOOSE AN OPTION:                            ||\n");
+    printf("||     1) SEE DETAILS OR COMMENT    -> Type in '1'      ||\n");
+    printf("||     2) SORT EVENTS               -> Type in '2'      ||\n");
+    printf("||     3) FILTER EVENTS             -> Type in '3'      ||\n");
+    printf("||     4) EXIT                      -> Type in '4'      ||\n");
     printf("||                                                      ||\n");
     printf("||                                                      ||\n");
     printf("==========================================================\n");

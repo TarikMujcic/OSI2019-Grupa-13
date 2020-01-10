@@ -27,6 +27,84 @@ int eventIdSearch(char *index)
         return printf("ERROR! Couldn't open 'EventLookUp.txt' ...\n"),0;
 }
 
+int isAvailable(EVENT* event)
+{
+    FILE *eventDatabaseFile;
+    if((eventDatabaseFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        EVENT *eventTmp = (EVENT *)calloc(1, sizeof(EVENT));
+        while(fread(eventTmp, 1, sizeof(EVENT), eventDatabaseFile))
+        {
+            if(strcmp(event->name, eventTmp->name) == 0)        //so that 2 events cant have the same name
+                return printf("ERROR! That event can't be created!\That NAME is already in use by another event!\n\n"), 0;
+
+            if(strcmp(event->location, eventTmp->location) == 0 &&                                           //if event location is equal
+            eventTmp->day == event->day && eventTmp->month == event->month && eventTmp->year == event->year) //if event date is equal to another
+            {
+                int endTimeMTmp = eventTmp->minutes + eventTmp->durationMinutes,
+                    moveTmp = 0;        //variable to move 1 hour to 'hours' if minutes are more than 60
+                if(endTimeMTmp / 60)    //if its longer than 60minutes
+                {
+                    moveTmp = 1;
+                    endTimeMTmp %= 60;
+                }
+                int endTimeHTmp = eventTmp->hours + eventTmp->durationHours + moveTmp;
+        //------------------------------------------------------------------------------------------------------------------------
+                int endTimeM = event->minutes + event->durationMinutes,
+                    move = 0;        //variable to move 1 hour to 'hours' if minutes are more than 60
+                if(endTimeM / 60)    //if its longer than 60minutes
+                {
+                    move = 1;
+                    endTimeM %= 60;
+                }
+                int endTimeH = event->hours + event->durationHours + move;
+         //-------------------------------------------------------------------------------------------------------------------------
+                ///event is before eventTmp
+                if(event->hours < eventTmp->hours ||
+                   event->hours == eventTmp->hours && event->minutes < eventTmp->minutes)
+                {
+                    if(endTimeH < eventTmp->hours ||         //than end time of event must be before start time of eventTmp
+                       endTimeH == eventTmp->hours && endTimeM <= eventTmp->minutes)
+                    {
+                        printf("Location is available!\n");
+                        free(eventTmp);
+                        return 1;
+                    }
+                    else
+                    {
+                        printf("ERROR! That event can't be created!\LOCATION is not available at that time!\n\n");
+                        free(eventTmp);
+                        return 0;
+                    }
+                }
+                ///event is after eventTmp
+                else if(event->hours > eventTmp->hours ||
+                   event->hours == eventTmp->hours && event->minutes > eventTmp->minutes)
+                {
+                    if(endTimeHTmp < event->hours ||         //than end time of event must end before start time of eventTmp
+                       endTimeHTmp == event->hours && endTimeMTmp <= event->minutes)
+                    {
+                        printf("Location is available!\n");
+                        free(eventTmp);
+                        return 1;
+                    }
+                    else
+                    {
+                        printf("ERROR! That event can't be created!\LOCATION is not available at that time!\n\n");
+                        free(eventTmp);
+                        return 0;
+                    }
+                }
+            }
+        }
+        fclose(eventDatabaseFile);
+    }
+    else
+        printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
+    return 1;
+}
+
+
 void readNewEvent(EVENT *event,int control)         //control == 1 for new event, control == 0 for updating old event
 {
     int count=0,i,option=0;
@@ -97,7 +175,8 @@ int createNewEvent()
     readNewEvent(&newEvent, 1);                   //second argument is 1 because we're reading info about a new event
     if(eventIdSearch(newEvent.id) == -1)          //if the event can be created, add it to the database
     {
-        //other criteria for this condition will be added later
+        if(!isAvailable(&newEvent))
+            return 0;
 
         if((eventDatabaseFile=fopen("eventDatabase.dat","ab"))!=NULL)
         {
@@ -120,10 +199,7 @@ int createNewEvent()
         return 1;
     }
     else
-    {
-        return printf("ERROR! That event can't be created!\nCheck if the location and ID are available!\n\n");
-        return 0;
-    }
+        return printf("ERROR! That event can't be created!\nID is not available!\n\n"), 0;
 }
 
 

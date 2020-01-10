@@ -347,22 +347,22 @@
 
 1578561202 ated upstream
 
-1578593912 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmain.c
+1578641736 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmain.c
 	"adminMainFunctions.h"
 	"eventFunctions.h"
 	"gui.h"
 
-1578581991 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmainfunctions.h
+1578641736 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmainfunctions.h
 	<stdio.h>
 	<windows.h>
 	"gui.h"
 	"eventFunctions.h"
 
-1578580570 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.h
+1578663357 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.h
 	<stdio.h>
 	<windows.h>
 
-1578593478 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.h
+1578654896 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.h
 	<stdio.h>
 
 1578581852 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmainfunctions.c
@@ -371,18 +371,24 @@
 
 1578578084 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\userinputvalidation.h
 
-1578593859 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.c
+1578666067 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.c
 	"eventFunctions.h"
 	"adminMainFunctions.h"
 
 1578578084 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\exitmain.c
 	"gui.h"
 
-1578590747 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.c
+1578667698 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.c
 	"gui.h"
 	"eventFunctions.h"
 
-1578578084 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\main.c
+1578671005 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\main.c
+	<stdio.h>
+	<stdlib.h>
+	"gui.h"
+	"userInputValidation.h"
+	"adminMainFunctions.h"
+	"eventFunctions.h"
 
 1578605102 source:c:\users\tarik mujcic\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmain.c
 	"adminMainFunctions.h"
@@ -429,15 +435,17 @@
 	"userInputValidation.h"
 	"adminMainFunctions.h"
 
-1578584741 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermain.c
+1578671005 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermain.c
 	"gui.h"
 	"eventFunctions.h"
 
-1578581434 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermainfunctions.c
+1578671284 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermainfunctions.c
 	"userMainFunctions.h"
 
-1578581962 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermainfunctions.h
+1578666127 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\usermainfunctions.h
 	<stdio.h>
+	<stdlib.h>
+	<string.h>
 	"eventFunctions.h"
 
 1578581962 tions.h"

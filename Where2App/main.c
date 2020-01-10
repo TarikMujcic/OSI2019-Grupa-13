@@ -19,7 +19,6 @@ int main()
         printUserOptions();
 
         char accOptionHelp[10];     //variable to take leftovers from the input stream
-
         do
         {
             if(wrongOption)
