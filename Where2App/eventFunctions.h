@@ -38,6 +38,7 @@ int createNewEvent();                               //function for creation of e
 void readNewEvent(EVENT *newEvent, int control);    //function for getting info about new event
 int updateEvent();                                  //function for updating event info
 void deleteEvent(char *eventID);                    //function for deleting event
+void updateEventLookUp(char *eventID);              //function for updating 'EventLookUp.txt' help file
 
 int  searchCategFile(FILE* categoriesFile, char* category);                 //function that searches for a category within a file
 void writeCategory(FILE* categoriesFile, char* category);                   //help function for addNewCategory() that writes a new category in a file

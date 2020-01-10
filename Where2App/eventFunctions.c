@@ -228,6 +228,31 @@ int updateEvent()                  //return value: 1-successful update, 0-event 
         return printf("\nERROR! You can't update events that don't exist. Make sure you have a correct ID and try again!\n"),0;
 }
 
+void updateEventLookUp(char *eventID)                   //function implemented into the deleteEvent function
+{
+    FILE *eventFile,
+         *eventLookUp;
+    EVENT tmpEvent;
+    INDEX eventIndex;
+    if((eventFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        if((eventLookUp = fopen("EventLookUp.txt", "w")) != NULL)
+        {
+            eventIndex.address = ftell(eventFile);                  //addres of the first event will always be 0
+            while(fread(&tmpEvent, sizeof(EVENT), 1, eventFile))
+            {
+                strcpy(eventIndex.idNum, tmpEvent.id);              //saving the ID of the event
+                fprintf(eventLookUp,"%s %d\n",eventIndex.idNum, eventIndex.address);    //adding event ID & address into 'EventLookUp.txt'
+                eventIndex.address = ftell(eventFile);                                  //saving the address for the next event
+            }
+            fclose(eventLookUp);
+        }
+        else printf("ERROR! Couldn't open file called 'EventLookUp.txt'!\n");
+        fclose(eventFile);
+    }
+    else printf("ERROR! Couldn't open file called 'eventDatabase.dat'!\n");
+}
+
 void deleteEvent(char *eventID)
 {
     FILE *eventFile,
@@ -262,9 +287,10 @@ void deleteEvent(char *eventID)
             fclose(tmpFile);
         }
         else printf("ERROR! Couldn't open file called 'tmpFile.dat'!\n");
+        updateEventLookUp(eventID);
     }
-    else return printf("No matching event has been found!\n");
-    printf("The event has been successfully deleted!\n");
+    else return printf("ERROR! No matching event has been found!\n");
+    printf("THE EVENT WAS SUCCESSFULLY DELETED!\n");
 
 }
 
