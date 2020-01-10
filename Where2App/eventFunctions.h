@@ -43,7 +43,7 @@ void updateEventLookUp(char *eventID);              //function for updating 'Eve
 int  searchCategFile(FILE* categoriesFile, char* category);                 //function that searches for a category within a file
 void writeCategory(FILE* categoriesFile, char* category);                   //help function for addNewCategory() that writes a new category in a file
 void addNewCategory(char* category);                                        //function which adds new category
-void printCategories();                                                     //function that prints out existing categories
+int printCategories();                                                     //function that prints out existing categories
 void deleteCategory(char* category);                                        //function that deletes selected category
 
 

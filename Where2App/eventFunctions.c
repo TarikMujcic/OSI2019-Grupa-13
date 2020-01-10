@@ -36,7 +36,7 @@ int isAvailable(EVENT* event)
         while(fread(eventTmp, 1, sizeof(EVENT), eventDatabaseFile))
         {
             if(strcmp(event->name, eventTmp->name) == 0)        //so that 2 events cant have the same name
-                return printf("ERROR! That event can't be created!\That NAME is already in use by another event!\n\n"), 0;
+                return printf("ERROR! That event can't be created!\nThat NAME is already in use by another event!\n\n"), 0;
 
             if(strcmp(event->location, eventTmp->location) == 0 &&                                           //if event location is equal
             eventTmp->day == event->day && eventTmp->month == event->month && eventTmp->year == event->year) //if event date is equal to another
@@ -72,7 +72,7 @@ int isAvailable(EVENT* event)
                     }
                     else
                     {
-                        printf("ERROR! That event can't be created!\LOCATION is not available at that time!\n\n");
+                        printf("ERROR! That event can't be created!\nLOCATION is not available at that time!\n\n");
                         free(eventTmp);
                         return 0;
                     }
@@ -90,7 +90,7 @@ int isAvailable(EVENT* event)
                     }
                     else
                     {
-                        printf("ERROR! That event can't be created!\LOCATION is not available at that time!\n\n");
+                        printf("ERROR! That event can't be created!\nLOCATION is not available at that time!\n\n");
                         free(eventTmp);
                         return 0;
                     }
@@ -323,7 +323,7 @@ void addNewCategory(char* newCategory)
     }
 }
 
-void printCategories()
+int printCategories()           //int is to check if the file is empty!
 {
     FILE* categoriesFile = NULL;
     char tmpString[21];
@@ -333,8 +333,10 @@ void printCategories()
         while(fscanf(categoriesFile, "%[^\n]\n", tmpString) != EOF)
             printf("%s\n", tmpString);
         fclose(categoriesFile);
+        return 1;
     }
-
+    else
+        return printf("Currently there are no registered categories!\n"), 0;
 }
 
 void deleteCategory(char* category)

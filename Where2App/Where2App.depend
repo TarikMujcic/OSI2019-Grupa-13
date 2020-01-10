@@ -347,42 +347,43 @@
 
 1578561202 ated upstream
 
-1578641736 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmain.c
+1578687733 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmain.c
 	"adminMainFunctions.h"
 	"eventFunctions.h"
 	"gui.h"
 
-1578641736 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmainfunctions.h
+1578686557 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmainfunctions.h
 	<stdio.h>
 	<windows.h>
 	"gui.h"
 	"eventFunctions.h"
 
-1578678664 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.h
+1578687494 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.h
 	<stdio.h>
 	<windows.h>
 
-1578684860 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.h
+1578687733 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.h
 	<stdio.h>
 
-1578581852 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmainfunctions.c
+1578687161 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\adminmainfunctions.c
 	"adminMainFunctions.h"
 	"userInputValidation.h"
+	<conio.h>
 
 1578578084 c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\userinputvalidation.h
 
-1578682020 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.c
+1578688249 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\eventfunctions.c
 	"eventFunctions.h"
 	"adminMainFunctions.h"
 
 1578578084 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\exitmain.c
 	"gui.h"
 
-1578683980 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.c
+1578687494 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\gui.c
 	"gui.h"
 	"eventFunctions.h"
 
-1578671005 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\main.c
+1578686401 source:c:\users\user\desktop\smartgit projects\osi2019-grupa-13\where2app\main.c
 	<stdio.h>
 	<stdlib.h>
 	"gui.h"

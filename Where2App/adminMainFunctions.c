@@ -4,6 +4,15 @@ administrator part of the application*/
 #include "adminMainFunctions.h"
 #include "userInputValidation.h"
 
+#include <conio.h>  //for getch() used in maskPassword
+
+
+void openEventLookUp()
+{
+    FILE *fp;
+    if((fp = fopen("eventLookUp.txt", "w")) != NULL)
+        fclose(fp);
+}
 
 void maskPassword(char *password)
 {
@@ -37,6 +46,8 @@ void registration()
 
     printf("NEW REGISTRATION: \n");
     printf("USERNAME: ");               scanf("%s",newRegAdmin.username);
+    if((databaseAdminFile = fopen("databaseAdmin.dat", "wb")) != NULL)         //to solve issues when trying to use admin part for the first time
+        fclose(databaseAdminFile);
     if(availableUsername(newRegAdmin.username)==0)
     {
         printf("This username is already taken! Please choose another one!\n\n");

@@ -7,6 +7,7 @@
 
 void adminMain()
 {
+    openEventLookUp();                          //to open files when first starting the app
     int successfulLogin = logRegForm();         //variable to check if the login was successful
     if(successfulLogin == 1)
     {
@@ -44,11 +45,14 @@ void adminMain()
             ///////////---------------------------------------   D E L E T E   E V E N T  -------------------------------------------------------------
             else if(option == 3)
             {
-                printEventsInFormat();
-                char eventID[6];
-                printf("Event ID: ");
-                scanf("%s", eventID);
-                deleteEvent(eventID);
+                int fileHasEvents = printEventsInFormat();
+                if(fileHasEvents)
+                {
+                    char eventID[6];
+                    printf("Event ID: ");
+                    scanf("%s", eventID);
+                    deleteEvent(eventID);
+                }
                 system("pause");
             }
             ///////////---------------------------------------  A D D    C A T E G O R Y  -------------------------------------------------------------
@@ -62,9 +66,12 @@ void adminMain()
             else if(option == 5)
             {
                 char category[21];
-                printCategories();
-                printf("\nName of category: "); getchar(); gets(category);
-                deleteCategory(category);
+                int fileHasCategories = printCategories();
+                if(fileHasCategories)
+                {
+                    printf("\nName of category: "); getchar(); gets(category);
+                    deleteCategory(category);
+                }
                 system("pause");
             }
             ///////////------------------------------------  C O N F I G U R E    A   Q U I Z  --------------------------------------------------------

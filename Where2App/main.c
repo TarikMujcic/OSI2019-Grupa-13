@@ -9,6 +9,7 @@
 //Version 2.1.2020.  (1)
 int main()
 {
+
     int  accountOption;         //variable to store the option that user chooses for which part of app he wants to use
 
     welcomeScreenGui();         //function for welcome screen and loading

@@ -34,21 +34,28 @@ void userMain()
             do
             {
                 system("cls");
-                printEventsInFormat();
-
-                printEventOptions();
-                int wrongOption = 0;                //variable to use for help to print out Error if user types in wrong option
-                do
+                int fileHasEvents = printEventsInFormat();
+                if(!fileHasEvents)
                 {
-                    if(wrongOption)
-                    {
-                        printf("That is not a valid option! Try again! \n\n");
-                        gets(optionHelp);
-                    }
-                    printf("Your choice: "); scanf("%d",&optionView);
-                    wrongOption = 1;
+                    optionView = 4; //to exit
                 }
-                while(optionView < 1 || optionView > 4);
+                else
+                {
+                    printEventOptions();
+                    int wrongOption = 0;                //variable to use for help to print out Error if user types in wrong option
+                    do
+                    {
+                        if(wrongOption)
+                        {
+                            printf("That is not a valid option! Try again! \n\n");
+                            gets(optionHelp);
+                        }
+                        printf("Your choice: "); scanf("%d",&optionView);
+                        wrongOption = 1;
+                    }
+                    while(optionView < 1 || optionView > 4);
+                }
+
 
                 ///IF optionView == 1 --> SEE EVENT DETAILS OR COMMENT----------------------------------------
                 if (optionView == 1)

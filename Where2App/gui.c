@@ -49,7 +49,7 @@ void printUserOptions()
     printf("\n");
 }
 
-void printEventsInFormat()
+int printEventsInFormat()
 {
     FILE *eventDatabaseFile;
     EVENT *eventTmp = (EVENT*)calloc(1,sizeof(EVENT));
@@ -67,9 +67,10 @@ void printEventsInFormat()
         fclose(eventDatabaseFile);
         free(eventTmp);
         printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+        return 1;
     }
     else
-        printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
+        return printf("ERROR! There are no events in database!\n"), 0;
 }
 
 
