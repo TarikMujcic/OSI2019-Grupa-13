@@ -134,7 +134,7 @@ void readNewEvent(EVENT *event,int control)         //control == 1 for new event
     }
     printf("  Location:            "); control ? getchar() : control ; gets(event->location);
     printf("  Event description:   "); gets(event->description);
-    printf("  Date [dd.mm.yy.]:    "); scanf("%d.%d.%d.", &event->day, &event->month, &event->year);
+    printf("  Date [dd.mm.yyyy.]:  "); scanf("%d.%d.%d.", &event->day, &event->month, &event->year);
     printf("  Time [hh:mm]:        "); scanf("%d:%d", &event->hours, &event->minutes);
     printf("  Duration [hh:mm]     "); scanf("%d:%d", &event->durationHours, &event->durationMinutes);
     if(count>0)

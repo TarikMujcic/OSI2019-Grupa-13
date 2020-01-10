@@ -157,10 +157,66 @@ void printEventOptions()
 
 void printSortOptions()
 {
-    printf("Sort by NAME ( A - Z )         -> Type in '1'\n");
-    printf("Sort by NAME ( Z - A )         -> Type in '2'\n");
-    printf("Sort by DATE&TIME (descending) -> Type in '3'\n");
-    printf("Sort by DATE&TIME (ascending)  -> Type in '4'\n");
+    printf("Sort by NAME ( A - Z )           -> Type in '1'\n");
+    printf("Sort by NAME ( Z - A )           -> Type in '2'\n");
+    printf("Sort by DATE&TIME (oldest first) -> Type in '3'\n");
+    printf("Sort by DATE&TIME (newest first) -> Type in '4'\n");
+}
+
+void printFilterOptions()
+{
+    printf("Filter by DATE          -> Type in '1'\n");
+    printf("Filter by CATEGORY      -> Type in '2'\n");
+    int wrongOption = 0;            //variable to use for help to print out Error if user types in wrong option
+    int optionFilter;
+    char optionHelp[10];
+    do
+    {
+        if(wrongOption)
+        {
+            printf("That is not a valid option! Try again! \n\n");
+            gets(optionHelp);
+        }
+        printf("Your choice: "); scanf("%d",&optionFilter);
+        wrongOption = 1;
+    }
+    while(optionFilter < 1 || optionFilter > 2);
+    if(optionFilter == 1)
+    {
+        int currDay, currMonth, currYear;
+        printf("Type in today's date: [dd.mm.yyyy.] :"); scanf("%d.%d.%d.", &currDay, &currMonth, &currYear);
+        printf("Filter today (%02d.%02d.%4d.)           -> Type in '1'\n", currDay, currMonth, currYear);
+        printf("Filter events after  '%02d.%02d.%4d.'   -> Type in '2'\n", currDay, currMonth, currYear);
+        printf("Filter events before '%02d.%02d.%4d.'   -> Type in '3'\n", currDay, currMonth, currYear);
+
+        int wrongOption = 0;                //variable to use for help to print out Error if user types in wrong option
+        int optionFilter1;
+        do
+        {
+            if(wrongOption)
+            {
+                printf("That is not a valid option! Try again! \n\n");
+                gets(optionHelp);
+            }
+            printf("Your choice: "); scanf("%d",&optionFilter1);
+            wrongOption = 1;
+        }
+        while(optionFilter1 < 1 || optionFilter1 > 3);
+        if(optionFilter1 == 1)
+            filterToday(currDay, currMonth, currYear);
+        else if(optionFilter1 == 2)
+            filterAfter(currDay, currMonth, currYear);
+        else if(optionFilter1 == 3)
+            filterBefore(currDay, currMonth, currYear);
+
+    }
+    else if(optionFilter == 2)
+    {
+        char categoryFilter[21];
+        printf("Type in your category for filter:"); getchar(); gets(categoryFilter);
+        filterCategory(categoryFilter);
+    }
+
 }
 
 ///For exitMain////////////////////////////////////////////////////////////

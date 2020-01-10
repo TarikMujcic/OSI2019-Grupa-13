@@ -21,6 +21,13 @@ void sortNameZtoA(EVENT *arr, int numOfElements);
 void sortDateTimeDesc(EVENT *arr, int numOfElements);
 void sortDateTimeAsc(EVENT *arr, int numOfElements);
 
+//FILTER FUNCTIONS
+void filterToday(int d, int m, int y);
+void filterAfter(int d, int m, int y);
+void filterBefore(int d, int m, int y);
+
+void filterCategory(char *categoryFilter);
+
 void playQuiz();                         //function for playing a quiz game
 
 #endif // USERMAINFUNCTIONS_H_INCLUDED

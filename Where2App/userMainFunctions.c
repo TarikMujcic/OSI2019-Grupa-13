@@ -141,7 +141,7 @@ int compareDateTime(const void *arg1, const void *arg2)
 void sortNameAtoZ(EVENT* arr, int numOfElements)
 {
     qsort(arr, numOfElements, sizeof(EVENT), compareName);
-    printf("SORTED BY NAME (DESCENDING) EVENTS:\n");
+    printf("SORTED BY NAME ( A - Z ) EVENTS:\n");
     printf("===== ================================ ==================== ================================ =========== ===== =========\n");
     printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
     printf("===== ================================ ==================== ================================ =========== ===== =========\n");
@@ -160,7 +160,7 @@ void sortNameAtoZ(EVENT* arr, int numOfElements)
 void sortNameZtoA(EVENT* arr, int numOfElements)
 {
     qsort(arr, numOfElements, sizeof(EVENT), compareName);
-    printf("SORTED BY NAME (DESCENDING) EVENTS:\n");
+    printf("SORTED BY NAME ( Z - A ) EVENTS:\n");
     printf("===== ================================ ==================== ================================ =========== ===== =========\n");
     printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
     printf("===== ================================ ==================== ================================ =========== ===== =========\n");
@@ -177,7 +177,7 @@ void sortNameZtoA(EVENT* arr, int numOfElements)
 void sortDateTimeDesc(EVENT* arr, int numOfElements)
 {
     qsort(arr, numOfElements, sizeof(EVENT), compareDateTime);
-    printf("SORTED BY NAME (DESCENDING) EVENTS:\n");
+    printf("SORTED BY DATE (OLDEST FIRST) EVENTS:\n");
     printf("===== ================================ ==================== ================================ =========== ===== =========\n");
     printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
     printf("===== ================================ ==================== ================================ =========== ===== =========\n");
@@ -195,22 +195,170 @@ void sortDateTimeDesc(EVENT* arr, int numOfElements)
 void sortDateTimeAsc(EVENT* arr, int numOfElements)
 {
     qsort(arr, numOfElements, sizeof(EVENT), compareDateTime);
-    printf("SORTED BY NAME (DESCENDING) EVENTS:\n");
+    printf("SORTED BY DATE (NEWEST FIRST) EVENTS:\n");
     printf("===== ================================ ==================== ================================ =========== ===== =========\n");
     printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
     printf("===== ================================ ==================== ================================ =========== ===== =========\n");
     for(int i = numOfElements - 1; i >= 0; i--)
     {
         printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", arr[i].id, arr[i].name, arr[i].category, arr[i].location,
-                                                                        arr[i].day, arr[i].month, arr[i].year,
-                                                                        arr[i].hours, arr[i].minutes,
-                                                                        arr[i].durationHours, arr[i].durationMinutes);
+                                                                                arr[i].day, arr[i].month, arr[i].year,
+                                                                                arr[i].hours, arr[i].minutes,
+                                                                                arr[i].durationHours, arr[i].durationMinutes);
     }
     printf("===== ================================ ==================== ================================ =========== ===== =========\n");
 }
 
+///FILTER FUNCTIONS -----------------
+
+void filterToday(int d, int m, int y)
+{
+    FILE *eventDatabaseFile;
+    EVENT eventTmp;
+    int empty = 1;          //variable to check if there are that kind of events
+    if((eventDatabaseFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        while(fread(&eventTmp, 1, sizeof(EVENT), eventDatabaseFile))
+            if(eventTmp.day == d && eventTmp.month == m && eventTmp.year == y)
+            {
+                if(empty)
+                {
+                    printf("FILTERED EVENTS ON %02d.%02d.%4d. :\n", d, m, y);
+                    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+                    printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
+                    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+                }
+                empty = 0;
+                printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", eventTmp.id, eventTmp.name,
+                                                                                        eventTmp.category, eventTmp.location,
+                                                                                        eventTmp.day, eventTmp.month, eventTmp.year,
+                                                                                        eventTmp.hours, eventTmp.minutes,
+                                                                                        eventTmp.durationHours, eventTmp.durationMinutes);
+            }
+        if(empty)
+            printf("THERE ARE NO EVENTS ON THAT DATE!\n");
+        else
+            printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+
+        fclose(eventDatabaseFile);
+    }
+    else
+        printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
+}
+
+void filterAfter(int d, int m, int y)
+{
+    FILE *eventDatabaseFile;
+    EVENT eventTmp;
+    int empty = 1;          //variable to check if there are that kind of events
+    if((eventDatabaseFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        while(fread(&eventTmp, 1, sizeof(EVENT), eventDatabaseFile))
+            if(eventTmp.year > y ||
+               eventTmp.year == y && eventTmp.month > m ||
+               eventTmp.year == y && eventTmp.month == m && eventTmp.day > d)
+            {
+                if(empty)
+                {
+                    printf("FILTERED EVENTS AFTER %02d.%02d.%4d. :\n", d, m, y);
+                    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+                    printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
+                    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+                }
+                empty = 0;
+                printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", eventTmp.id, eventTmp.name,
+                                                                                        eventTmp.category, eventTmp.location,
+                                                                                        eventTmp.day, eventTmp.month, eventTmp.year,
+                                                                                        eventTmp.hours, eventTmp.minutes,
+                                                                                        eventTmp.durationHours, eventTmp.durationMinutes);
+            }
+        if(empty)
+            printf("THERE ARE NO EVENTS AFTER THAT DATE!\n");
+        else
+            printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+
+        fclose(eventDatabaseFile);
+    }
+    else
+        printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
+    getchar();
+}
 
 
+void filterBefore(int d, int m, int y)
+{
+    FILE *eventDatabaseFile;
+    EVENT eventTmp;
+    int empty = 1;          //variable to check if there are that kind of events
+    if((eventDatabaseFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        while(fread(&eventTmp, 1, sizeof(EVENT), eventDatabaseFile))
+            if(eventTmp.year < y ||
+               eventTmp.year == y && eventTmp.month < m ||
+               eventTmp.year == y && eventTmp.month == m && eventTmp.day < d)
+            {
+                if(empty)
+                {
+                    printf("FILTERED EVENTS BEFORE %02d.%02d.%4d. :\n", d, m, y);
+                    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+                    printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
+                    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+                }
+                empty = 0;
+                printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", eventTmp.id, eventTmp.name,
+                                                                                        eventTmp.category, eventTmp.location,
+                                                                                        eventTmp.day, eventTmp.month, eventTmp.year,
+                                                                                        eventTmp.hours, eventTmp.minutes,
+                                                                                        eventTmp.durationHours, eventTmp.durationMinutes);
+            }
+        if(empty)
+            printf("THERE ARE NO EVENTS BEFORE THAT DATE!\n");
+        else
+            printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+
+        fclose(eventDatabaseFile);
+    }
+    else
+        printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
+}
+
+
+void filterCategory(char* categoryFilter)
+{
+    FILE *eventDatabaseFile;
+    EVENT eventTmp;
+    int empty = 1;          //variable to check if there are that kind of events
+    if((eventDatabaseFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        while(fread(&eventTmp, 1, sizeof(EVENT), eventDatabaseFile))
+        {
+            if(strcmp(categoryFilter, eventTmp.category) == 0)
+            {
+                if(empty)
+                {
+                    printf("FILTERED EVENTS FOR CATEGORY -> %s:\n", categoryFilter);
+                    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+                    printf("ID     NAME OF THE EVENT                CATEGORY             LOCATION                         DATE       TIME  DURATION\n");
+                    printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+                }
+                empty = 0;
+                printf("%-5s %-32s %-20s %-32s %02d.%02d.%4d. %02d:%02d   %02d:%02d\n", eventTmp.id, eventTmp.name,
+                                                                                        eventTmp.category, eventTmp.location,
+                                                                                        eventTmp.day, eventTmp.month, eventTmp.year,
+                                                                                        eventTmp.hours, eventTmp.minutes,
+                                                                                        eventTmp.durationHours, eventTmp.durationMinutes);
+            }
+        }
+        if(empty)
+            printf("THERE ARE NO EVENTS IN THAT CATEGORY!\n");
+        else
+            printf("===== ================================ ==================== ================================ =========== ===== =========\n");
+
+        fclose(eventDatabaseFile);
+    }
+    else
+        printf("ERROR! Can't open 'eventDatabase.dat' file!\n");
+}
 
 
 
@@ -233,7 +381,7 @@ void playQuiz()
     }
     else
     {
-        printf("\nError! Couldn't open 'Quiz.dat'. File moved or missing!\n");
+        printf("\nERROR! Quiz is not yet set up by the administrator!\n");
         return;
     }
     printf("===============================================\n");
