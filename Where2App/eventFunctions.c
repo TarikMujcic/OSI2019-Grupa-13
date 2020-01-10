@@ -146,15 +146,50 @@ int updateEvent()                  //return value: 1-successful update, 0-event 
             return printf("\nEvent was successfully updated!\n"),1;
         }
         else
-            return printf("Error! Couldn't open file called 'eventDatabase.dat'!"),0;
+            return printf("ERROR! Couldn't open file called 'eventDatabase.dat'!"),0;
     }
     else
-        return printf("\nError! You can't update events that don't exist. Make sure you have a correct ID and try again!\n"),0;
+        return printf("\nERROR! You can't update events that don't exist. Make sure you have a correct ID and try again!\n"),0;
 }
 
 void deleteEvent(char *eventID)
 {
-    ///DO THIS FUNCTION JUST LIKE YOU DID deleteCategory !
+    FILE *eventFile,
+         *tmpFile;
+    EVENT tmpEvent;
+    int finder = 0;
+    if((eventFile = fopen("eventDatabase.dat", "rb")) != NULL)
+    {
+        if((tmpFile = fopen("tmpFile.dat", "wb")) != NULL)
+        {
+            while(fread(&tmpEvent, sizeof(EVENT), 1, eventFile))
+                if(strcmp(eventID, tmpEvent.id) != 0)
+                    fwrite(&tmpEvent, sizeof(EVENT), 1, tmpFile);
+                else finder = 1;
+            fclose(tmpFile);
+        }
+        else printf("ERROR! Couldn't open file called 'tmpFile.dat'!\n");
+        fclose(eventFile);
+    }
+    else printf("ERROR! Couldn't open file called 'eventDatabase.dat'!\n");
+    if(finder)
+    {
+        if((tmpFile = fopen("tmpFile.dat", "rb")) != NULL)
+        {
+            if((eventFile = fopen("eventDatabase.dat", "wb")) != NULL)
+            {
+                while(fread(&tmpEvent, sizeof(EVENT), 1, tmpFile))
+                    fwrite(&tmpEvent, sizeof(EVENT), 1, eventFile);
+                fclose(eventFile);
+            }
+            else printf("ERROR! Couldn't open file called 'eventDatabase.dat'!\n");
+            fclose(tmpFile);
+        }
+        else printf("ERROR! Couldn't open file called 'tmpFile.dat'!\n");
+    }
+    else return printf("No matching event has been found!\n");
+    printf("The event has been successfully deleted!\n");
+
 }
 
 int searchCategFile(FILE* categoriesFile, char* category)
